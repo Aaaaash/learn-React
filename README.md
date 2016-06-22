@@ -31,7 +31,7 @@ React 应用的核心设计模式，数据流向自顶向下<br/>
         <Hello name="World!"/>,
         document.getElementById('example');
     )
-<br/>
+
 以上就是JSX语法，组件内部写法和HTML一样，直接在函数中写xml标签
 ##React独特之处
 * 组件的组合模式<br/>
@@ -79,25 +79,25 @@ JSX组件嵌套的规则和XML基本一致<br/>
 
     function render(){
         return <p>
-                text context
-                <ul>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
-               </p>
+            text context
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </p>
     }
 
 ####标签闭合
 标签必须严格闭合，否则无法编译通过<br/>
-<br/>
+
     function render(){
-        return <input type="text"/>     //自闭合
+        return <input type="text"/>
     }
     function render(){
-        return <p>....</p>              //标签闭合
+        return <p></p>
     }
-<br/>
+
 ###JSX组件
 JSX组件分为`HTML原生组件`和`自定义组件`<br/>
 
@@ -112,17 +112,105 @@ JSX组件分为`HTML原生组件`和`自定义组件`<br/>
                </ul>
     }
 
-<br/>
 React组件就是自定义组件<br/>
-<br/>
-    function CustomCompont=React.createClass({          //定义自定义组件
+
+    function CustomCompont=React.createClass({
         render:function(){
             return <div>CustomCompont</div>
         }
     });
-    function render(){                              //使用自定义组件
+    function render(){
         return <p><CustomCompont/></p>
     }
-<br/>    
+
 ###组件属性
 和html一样，JSX中的组件也有属性，传递属性的方式也基本相同<br/>
+对于HTML组件：<br/>
+
+    function render(){
+        return <p title="title">Hello World!</p>
+    }
+
+而如果是React组件，可以自定义属性，传递自定义属性的方式也基本相同<br/>
+
+    function render(){
+        return <p><CustomComponent customProps="data"/></p>
+    }
+
+属性即可以是字符串，也可以是任意的JavaScript变量<br/>
+而传递属性的方式是变量用花括号包起来<br/>
+
+    function render() {
+        var data = {a: 1, b:2};
+        return <p> <CustomComponent customProps={data}/> </p>
+    }
+
+>有一个区别是，在写JSX的时候，所有的属性都是`驼峰命名法`
+
+    function render(){
+        return <div className="...">
+            <label htmlFor=".."></label>
+            <input onChange=""/>
+        </div>
+    }
+
+驼峰式是JavaScript的标准写法，并且React底层是将属性直接对应到原生DOM属性，而原生DOM的属性其实就是驼峰式写法，而这里class和for是js的关键字，所以在JSX中这两个属性应该写成`className`和`htmlFor`<br/>
+
+除此之外比较特殊的地方是 data-* 和 aria-* 两类属性是和 HTML 一致的。<br/>
+
+###JSX花括号
+####显示文本
+有时候我们需要将js中的文本直接显示，做法和变量一样用花括号<br/>
+
+    function render(){
+        var text="Hello World!";
+        return <p>{text}</p>
+    }
+
+####运算
+花括号里边除了变量以外，还可以是一段js表达式，可以利用花括号做简单的运算<br/>
+
+    function render(){
+        var text=text;
+        var isTrue=false;
+        var arr=[1,2,3];
+        return <p>
+            {text}
+            {isTrue?'true':'false'}
+            {arr.map(function(){
+                return <span>{it}</span>
+                })}
+        </p>
+    }
+
+###JSX注释
+注释的写法与原生js基本一致<br/>
+
+    function render(){
+        /*这里是注释内容*/
+    }
+
+###限制规则
+render方法返回的组件必须有且只有一个根组件<br/>
+
+    function render(){
+        return <P></p>
+        <p></p>
+        //无法编译通过，JSX会显示编译错误
+    }
+
+###组件命名空间
+JSX可以通过命名空间的方式使用组件，通过命名空间的方式可以解决相同名称不同用途的组件<br/>
+
+    function render(){
+        return <div>
+        <CustomCompont1.subElement/>
+        <CustomCompont2.subElement/>
+        </div>
+    }
+
+###JSX的编译方式
+JSX最终会被解释成原生js的语法，而且实际上如果愿意的话可以直接写js的语法，但是JSX的开发体验可能会更好一点<br/>
+JSX的编译方式有两种<br/>
+* 在HTML中引入babel编译器，如一开始HelloWorld中的`browser.min.js`
+* 离线JSX编译，通过babel编译JSX
