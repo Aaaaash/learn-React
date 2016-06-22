@@ -20,7 +20,7 @@ JSX是React自定义的一种JavaScript语法，最终会被转化为js运行在
 ###单项数据流
 React 应用的核心设计模式，数据流向自顶向下<br/>
 ##Hello World
->例子详见React-helloworld-demo
+>例子详见React-helloworld-demo<br/>
 
     var Hello=React.createClass({
         render:function(){
@@ -31,7 +31,7 @@ React 应用的核心设计模式，数据流向自顶向下<br/>
         <Hello name="World!"/>,
         document.getElementById('example');
     )
-
+<br/>
 以上就是JSX语法，组件内部写法和HTML一样，直接在函数中写xml标签
 ##React独特之处
 * 组件的组合模式<br/>
@@ -57,7 +57,8 @@ virtual DOM的概念，基于virtualDOM算法，可以让只有需要改变的do
 ###React应用范围
 * web端应用
 * 原生应用（ISO,android，Native）
-* Node JS服务端渲染
+* Node JS服务端渲染<br/>
+
 ####Web端应用
 Web应用是React的出发点，我们可以通过React构建简单的web端应用，甚至是大型的web应用。同时在web端，还可以用React实现数据可视化，游戏等等。。。<br/>
 ####原生应用
@@ -89,17 +90,19 @@ JSX组件嵌套的规则和XML基本一致<br/>
 
 ####标签闭合
 标签必须严格闭合，否则无法编译通过<br/>
+<br/>
     function render(){
         return <input type="text"/>     //自闭合
     }
     function render(){
         return <p>....</p>              //标签闭合
     }
-
+<br/>
 ###JSX组件
 JSX组件分为`HTML原生组件`和`自定义组件`<br/>
+
     function (){
-        return <p>....</p>
+        return <p></p>
     }
     function(){
         return <ul>
@@ -108,7 +111,10 @@ JSX组件分为`HTML原生组件`和`自定义组件`<br/>
                 <li></li>
                </ul>
     }
+
+<br/>
 React组件就是自定义组件<br/>
+<br/>
     function CustomCompont=React.createClass({          //定义自定义组件
         render:function(){
             return <div>CustomCompont</div>
@@ -117,5 +123,6 @@ React组件就是自定义组件<br/>
     function render(){                              //使用自定义组件
         return <p><CustomCompont/></p>
     }
+<br/>    
 ###组件属性
 和html一样，JSX中的组件也有属性，传递属性的方式也基本相同<br/>
