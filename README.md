@@ -22,6 +22,7 @@ React 应用的核心设计模式，数据流向自顶向下<br/>
 ##Hello World
 >例子详见React-helloworld-demo<br/>
 
+
     var Hello=React.createClass({
         render:function(){
             return <div>Hello {this.props.name}</div>
@@ -214,3 +215,115 @@ JSX最终会被解释成原生js的语法，而且实际上如果愿意的话可
 JSX的编译方式有两种<br/>
 * 在HTML中引入babel编译器，如一开始HelloWorld中的`browser.min.js`
 * 离线JSX编译，通过babel编译JSX
+###JSX到js的转化
+例如一开始的Hello World转化为js的代码如下<br/>
+
+    var Hello=React.createClass({
+        displayName:'Hello',
+        render:function(){
+            return React.createElement('div',null,'Hello',this.props.name);
+        }
+        });
+    ReactDOM.render(
+        React.createElement(Hello,{name:'World!'}),
+        document.getElementById('container')
+        )
+
+><Hello/>==>React.createElement(Hello,...)
+
+基本可以得知，React中组件就是一个对象<br/>
+
+##React组件
+###React组件介绍
+在React中组件是第一元素，是React的基础，一个React应用就是由多个组件组合而成的<br/>
+
+###创建一个组件
+创建一个组件，需要调用React.createClass方法，传入一个对象作为参数，且必须有一个render方法，render方法则返回整个组件的结构，render的返回值有且只能有一个组件实例，或者返回null/false，当返回null/false时，React内部通过<noscript/>标签替换！<br/>
+
+    var MyComponte=React.createClass({
+        render:function(){
+            return <p></p>
+        }
+        });
+
+####组件的命名空间
+React.createClass方法生成的组件实际上是一个JavaScript对象，也可以设置命名控件组件<br/>
+
+    MyComponent.SubComponent=React.createClass({....})
+    MyComponent.SubComponent.Sub=React.createClass({....})
+
+组件较多的情况下，可以借助命名空间的方式解决组件名称冲突的问题<br/>
+
+####无状态组件
+还有一种创建组件的方式是通过一个普通函数返回组件<br/>
+
+    function StatesComponent(props){
+        return <div>Hello {props.name}</div>
+    }
+
+这样创建的组件内部不会维护状态，React内部也不会有一个对应的组件实例，并且也没有生命周期`hook`
+
+###组件的渲染
+当创建好了一个组件以后，将这个组件渲染到页面上一共有两个步骤<br/>
+* 首先页面中需要有一个父级容器来容纳这个组件，事先在HTML中定义一个元素，并设置id属性
+* JSX中调用ReactDOM.render方法，第一个参数为需要插入的组件，第二个参数就是之前定义的这个父级DOM元素
+
+    <!-- 定义DOM元素 -->
+    <div id="app"></div>
+    <script type="text/babel">
+        //自定义组件
+        var MyComponent=React.createClass({
+            render:function(){
+                return <p>.....</p>;
+            }
+            });
+            //调用render方法渲染组件到容器中
+            ReactDOM.render(
+                <MyComponent/>,
+                document.getElementById('app')
+                );
+    </sctipt>
+
+有一些问题需要注意:<br/>
+* React可以渲染组件到多个元素，并且是任意位置的元素
+* 程序运行中可以动态的调用render方法
+* 数据修改后不需要重新调用render方法
+
+###组件状态State
+React中每个组件可以存储自己的当前状态，React的渲染结果是由组件属性和状态共同决定的，状态和属性(props)的区别是：<br/>
+* 状态维护在组件的内部
+* 属性是由外部控制
+
+控制状态的API分比为：<br/>
+* this.state:组件的当前状态
+* getInitialState：获取组件的初始状态，在组件加载的时候会被调用一次，返回值给this.state作为初始值
+* this.setState:
+    * 组件状态改变时，可以通过this.setState修改状态
+    * setState支持按需修改，也就是说可以传入一个key只修改一个状态
+    * 每次调用setState会导致重渲染调用render方法
+    * 直接修改state 不会重新渲染组件
+
+    var Switch=React.createClass({
+        //定义Switch组件的初始状态，初始为关闭
+        getInitialState:function(){
+            return {
+                open:false
+            }
+        },
+        //通过this.state获取当前状态
+        render:function(){
+            console.log('render switch component');
+            var open=this.state.open;
+            return <label className="switch">
+                <input type="checkbox" checked={open}/>
+            <label/>
+        },
+        //通过setState修改状态
+        //setState 过后会 React 会调用 render 方法重渲染 input 组件状态
+        toggleSwitch:function(){
+            var open=this.state.open;
+            this.setState({
+                open:!open
+                });
+        }
+        })
