@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Hello World!</title>
+        <script src="http://facebook.github.io/react/js/react.js"></script>
+        <script src="http://facebook.github.io/react/js/react-dom.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+        <script type="text/babel">
+            var MessageBox=React.createClass({
+                alertMe:function(){
+                    alert('你再点？');
+                },
+                render:function(){
+                    return <div><h1 onClick={this.alertMe}>Hello World!</h1></div>
+                }
+            });
+            ReactDOM.render(
+                <MessageBox/>,
+                document.getElementById('app'),
+                function(){
+                    console.log('渲染完成！');
+                }
+            )
+        </script>
+    </body>
+</html>
