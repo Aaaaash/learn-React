@@ -352,3 +352,85 @@ React可以传递属性给组件，方法和html中差不多，可以通过this.
 * getDefaultProps:获取默认属性对象，会被调用一次，返回值会被缓存起来，当组件被 实例化后如果传入的属性没有值，则会返回默认值
 * this.props.children:子节点属性
 * propsTypes:属性类型检查
+
+以一个待办事项列表组件为例：<br/>
+```JavaScript
+    var TodoItem=React.createClass({
+        render:function(){
+            var props=this.props;
+            return <div className="todo-item">
+                <span className="todo-item__name">{props.name}</span>
+            </div>
+        }
+    });
+    ReactDOM.render(
+        <TodoItem name="待办事项1"/>,
+        document.getElementById('example')
+    );
+```
+####children属性
+组件属性中有一个特殊的属性`children`，表示子组件，以上面的组件为例，换一种方式定义name：<br/>
+```JavaScript
+    var TodoItem=React.createClass({
+        render:function(){
+            var props=this.props;
+            return <div className="todo-item">
+                <span className="todp-item__name">{props.children}</span>
+            </div>
+        }
+    });
+    ReactDOM.render(
+        <TodoItem>待办事项1</TodoItem>,          //这里组件内的'待办事项1'就是一个子组件，子组件可以是任意元素，文本或标签都可以
+        document.getElementById('example')
+    );
+```
+
+>children只能为一个元素
+
+####属性类型检查
+为了保证组件属性传递的正确性，可以通过定义propsType对象来约定属性的类型<br/>
+```JavaScript
+var MyComponent = React.createClass({
+    propTypes: {
+        optionalArray: React.PropTypes.array,
+        optionalBool: React.PropTypes.bool,
+        optionalFunc: React.PropTypes.func,
+        optionalNumber: React.PropTypes.number,
+        optionalObject: React.PropTypes.object,
+        optionalString: React.PropTypes.string,
+        // 任何可以被渲染的包括，数字，字符串，组件，或者数组
+        optionalNode: React.PropTypes.node,
+        // React 元素
+        optionalElement: React.PropTypes.element,
+        // 枚举
+        optionalEnum: React.PropTypes.oneOf(['News', 'Photos']),
+        // 任意一种类型
+        optionalUnion: React.PropTypes.oneOfType([
+          React.PropTypes.string,
+          React.PropTypes.number,
+          React.PropTypes.instanceOf(Message)
+        ]),
+        // 具体类型的数组
+        optionalArrayOf: React.PropTypes.arrayOf(React.PropTypes.number),
+        // 具体类型的对象
+        optionalObjectOf: React.PropTypes.objectOf(React.PropTypes.number),
+        // 符合定义的对象
+        optionalObjectWithShape: React.PropTypes.shape({
+          color: React.PropTypes.string,
+          fontSize: React.PropTypes.number
+        }),
+        requiredFunc: React.PropTypes.func.isRequired,
+        requiredAny: React.PropTypes.any.isRequired,
+        // 自定义校验
+        customProp: function(props, propName, componentName) {}
+    }
+});
+```
+
+####属性的单向性传递
+React是单向数据流模式，数据的流通管道就是props，流动的层级是组件的层级`自顶向下`的方向<br/>
+一个组件是不能修改自身属性的，组件的属性一定是通过父级传递进来！<br/>
+####无状态组件属性
+无状态组件，可以添加.propsTypes和.defaultProps属性到函数上
+
+###组件的嵌套组合
