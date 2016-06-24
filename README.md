@@ -268,8 +268,8 @@ React.createClass方法生成的组件实际上是一个JavaScript对象，也�
 * 首先页面中需要有一个父级容器来容纳这个组件，事先在HTML中定义一个元素，并设置id属性
 * JSX中调用ReactDOM.render方法，第一个参数为需要插入的组件，第二个参数就是之前定义的这个父级DOM元素
 
-
-    <script type="text/babel">
+    //html中定义父级div
+    <div id="app"></div>
         //自定义组件
         var MyComponent=React.createClass({
             render:function(){
@@ -281,7 +281,6 @@ React.createClass方法生成的组件实际上是一个JavaScript对象，也�
                 <MyComponent/>,
                 document.getElementById('app')
                 );
-    </sctipt>
 
 有一些问题需要注意:<br/>
 * React可以渲染组件到多个元素，并且是任意位置的元素
