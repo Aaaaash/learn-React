@@ -301,31 +301,33 @@ React中每个组件可以存储自己的当前状态，React的渲染结果是�
     * 每次调用setState会导致重渲染调用render方法
     * 直接修改state 不会重新渲染组件
 
-
-    var Switch=React.createClass({
-        //定义Switch组件的初始状态，初始为关闭
-        getInitialState:function(){
-            return {
-                open:false
-            }
-        },
-        //通过this.state获取当前状态
-        render:function(){
-            console.log('render switch component');
-            var open=this.state.open;
-            return <label className="switch">
-                <input type="checkbox" checked={open}/>
-            <label/>
-        },
-        //通过setState修改状态
-        //setState 过后会 React 会调用 render 方法重渲染 input 组件状态
-        toggleSwitch:function(){
-            var open=this.state.open;
-            this.setState({
-                open:!open
-                });
+```JavaScript
+var Switch=React.createClass({
+    //定义Switch组件的初始状态，初始为关闭
+    getInitialState:function(){
+        return {
+            open:false
         }
-    });
+    },
+    //通过this.state获取当前状态
+    render:function(){
+        console.log('render switch component');
+        var open=this.state.open;
+        return <label className="switch">
+            <input type="checkbox" checked={open}/>
+        <label/>
+    },
+    //通过setState修改状态
+    //setState 过后会 React 会调用 render 方法重渲染 input 组件状态
+    toggleSwitch:function(){
+        var open=this.state.open;
+        this.setState({
+            open:!open
+            });
+    }
+});
+```
+
 
 
 ###组件属性props
