@@ -269,7 +269,6 @@ React.createClass方法生成的组件实际上是一个JavaScript对象，也�
 * JSX中调用ReactDOM.render方法，第一个参数为需要插入的组件，第二个参数就是之前定义的这个父级DOM元素
 
 
-    <div id="app"></div>
     <script type="text/babel">
         //自定义组件
         var MyComponent=React.createClass({
