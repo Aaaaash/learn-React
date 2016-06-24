@@ -6,6 +6,7 @@ React是Facebook内部开源出来的一套前端UI开发框架，现在来讲Re
 * React开源组件
 * React Native
 * GraphQi+Relay
+
 ##React中的基本概念
 ###React.js
 React.js是React的核心库，在应用中必须先加载核心库<br/>
@@ -20,6 +21,7 @@ JSX是React自定义的一种JavaScript语法，最终会被转化为js运行在
 ###单项数据流
 React 应用的核心设计模式，数据流向自顶向下<br/>
 ##Hello World
+
 >例子详见React-helloworld-demo<br/>
 
 ```JavaScript
@@ -341,7 +343,6 @@ var Switch=React.createClass({
     }
 });
 ```
-
 
 
 ###组件属性props
