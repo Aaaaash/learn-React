@@ -301,6 +301,7 @@ React中每个组件可以存储自己的当前状态，React的渲染结果是�
     * 每次调用setState会导致重渲染调用render方法
     * 直接修改state 不会重新渲染组件
 
+
     var Switch=React.createClass({
         //定义Switch组件的初始状态，初始为关闭
         getInitialState:function(){
@@ -325,6 +326,7 @@ React中每个组件可以存储自己的当前状态，React的渲染结果是�
                 });
         }
         })
+
 
 ###组件属性props
 React可以传递属性给组件，方法和html中差不多，可以通过this.props获取组件属性<br/>
