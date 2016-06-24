@@ -22,7 +22,7 @@ React 应用的核心设计模式，数据流向自顶向下<br/>
 ##Hello World
 >例子详见React-helloworld-demo<br/>
 
-
+```JavaScript
     var Hello=React.createClass({
         render:function(){
             return <div>Hello {this.props.name}</div>
@@ -32,7 +32,7 @@ React 应用的核心设计模式，数据流向自顶向下<br/>
         <Hello name="World!"/>,
         document.getElementById('example');
     )
-
+```
 以上就是JSX语法，组件内部写法和HTML一样，直接在函数中写xml标签
 ##React独特之处
 * 组件的组合模式<br/>
@@ -78,6 +78,7 @@ JSX组件嵌套的规则和XML基本一致<br/>
 ####嵌套规则
 >标签可以任意的嵌套
 
+```JavaScript
     function render(){
         return <p>
             text context
@@ -88,20 +89,20 @@ JSX组件嵌套的规则和XML基本一致<br/>
             </ul>
         </p>
     }
-
+```
 ####标签闭合
 标签必须严格闭合，否则无法编译通过<br/>
-
+```JavaScript
     function render(){
         return <input type="text"/>
     }
     function render(){
         return <p></p>
     }
-
+```
 ###JSX组件
 JSX组件分为`HTML原生组件`和`自定义组件`<br/>
-
+```JavaScript
     function (){
         return <p></p>
     }
@@ -112,9 +113,9 @@ JSX组件分为`HTML原生组件`和`自定义组件`<br/>
                 <li></li>
                </ul>
     }
-
+```
 React组件就是自定义组件<br/>
-
+```JavaScript
     function CustomCompont=React.createClass({
         render:function(){
             return <div>CustomCompont</div>
@@ -123,38 +124,45 @@ React组件就是自定义组件<br/>
     function render(){
         return <p><CustomCompont/></p>
     }
-
+```
 ###组件属性
 和html一样，JSX中的组件也有属性，传递属性的方式也基本相同<br/>
 对于HTML组件：<br/>
 
+```JavaScript
     function render(){
         return <p title="title">Hello World!</p>
     }
+```
 
 而如果是React组件，可以自定义属性，传递自定义属性的方式也基本相同<br/>
 
+```JavaScript
     function render(){
         return <p><CustomComponent customProps="data"/></p>
     }
+```
 
 属性即可以是字符串，也可以是任意的JavaScript变量<br/>
 而传递属性的方式是变量用花括号包起来<br/>
 
+```JavaScript
     function render() {
         var data = {a: 1, b:2};
         return <p> <CustomComponent customProps={data}/> </p>
     }
+```
 
 >有一个区别是，在写JSX的时候，所有的属性都是`驼峰命名法`
 
+```JavaScript
     function render(){
         return <div className="...">
             <label htmlFor=".."></label>
             <input onChange=""/>
         </div>
     }
-
+```
 驼峰式是JavaScript的标准写法，并且React底层是将属性直接对应到原生DOM属性，而原生DOM的属性其实就是驼峰式写法，而这里class和for是js的关键字，所以在JSX中这两个属性应该写成`className`和`htmlFor`<br/>
 
 除此之外比较特殊的地方是 data-* 和 aria-* 两类属性是和 HTML 一致的。<br/>
@@ -162,15 +170,15 @@ React组件就是自定义组件<br/>
 ###JSX花括号
 ####显示文本
 有时候我们需要将js中的文本直接显示，做法和变量一样用花括号<br/>
-
+```JavaScript
     function render(){
         var text="Hello World!";
         return <p>{text}</p>
     }
-
+```
 ####运算
 花括号里边除了变量以外，还可以是一段js表达式，可以利用花括号做简单的运算<br/>
-
+```JavaScript
     function render(){
         var text=text;
         var isTrue=false;
@@ -183,14 +191,14 @@ React组件就是自定义组件<br/>
                 })}
         </p>
     }
-
+```
 ###JSX注释
 注释的写法与原生js基本一致<br/>
-
+```JavaScript
     function render(){
         /*这里是注释内容*/
     }
-
+```
 ###限制规则
 render方法返回的组件必须有且只有一个根组件<br/>
 
@@ -202,14 +210,14 @@ render方法返回的组件必须有且只有一个根组件<br/>
 
 ###组件命名空间
 JSX可以通过命名空间的方式使用组件，通过命名空间的方式可以解决相同名称不同用途的组件<br/>
-
+```JavaScript
     function render(){
         return <div>
         <CustomCompont1.subElement/>
         <CustomCompont2.subElement/>
         </div>
     }
-
+```
 ###JSX的编译方式
 JSX最终会被解释成原生js的语法，而且实际上如果愿意的话可以直接写js的语法，但是JSX的开发体验可能会更好一点<br/>
 JSX的编译方式有两种<br/>
@@ -217,7 +225,7 @@ JSX的编译方式有两种<br/>
 * 离线JSX编译，通过babel编译JSX
 ###JSX到js的转化
 例如一开始的Hello World转化为js的代码如下<br/>
-
+```JavaScript
     var Hello=React.createClass({
         displayName:'Hello',
         render:function(){
@@ -228,7 +236,7 @@ JSX的编译方式有两种<br/>
         React.createElement(Hello,{name:'World!'}),
         document.getElementById('container')
         )
-
+```
 ><Hello/>==>React.createElement(Hello,...)
 
 基本可以得知，React中组件就是一个对象<br/>
@@ -240,17 +248,20 @@ JSX的编译方式有两种<br/>
 ###创建一个组件
 创建一个组件，需要调用React.createClass方法，传入一个对象作为参数，且必须有一个render方法，render方法则返回整个组件的结构，render的返回值有且只能有一个组件实例，或者返回null/false，当返回null/false时，React内部通过<noscript/>标签替换！<br/>
 
+    ```JavaScript
     var MyComponte=React.createClass({
         render:function(){
             return <p></p>
         }
         });
+    ```
 
 ####组件的命名空间
 React.createClass方法生成的组件实际上是一个JavaScript对象，也可以设置命名控件组件<br/>
-
+    ```JavaScript
     MyComponent.SubComponent=React.createClass({....})
     MyComponent.SubComponent.Sub=React.createClass({....})
+    ```
 
 组件较多的情况下，可以借助命名空间的方式解决组件名称冲突的问题<br/>
 
@@ -268,8 +279,11 @@ React.createClass方法生成的组件实际上是一个JavaScript对象，也�
 * 首先页面中需要有一个父级容器来容纳这个组件，事先在HTML中定义一个元素，并设置id属性
 * JSX中调用ReactDOM.render方法，第一个参数为需要插入的组件，第二个参数就是之前定义的这个父级DOM元素
 
+    ```html
     //html中定义父级div
     <div id="app"></div>
+    ```
+    ```JavaScript
         //自定义组件
         var MyComponent=React.createClass({
             render:function(){
@@ -281,7 +295,7 @@ React.createClass方法生成的组件实际上是一个JavaScript对象，也�
                 <MyComponent/>,
                 document.getElementById('app')
                 );
-
+    ```
 有一些问题需要注意:<br/>
 * React可以渲染组件到多个元素，并且是任意位置的元素
 * 程序运行中可以动态的调用render方法
