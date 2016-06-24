@@ -268,7 +268,7 @@ React.createClass方法生成的组件实际上是一个JavaScript对象，也�
 * 首先页面中需要有一个父级容器来容纳这个组件，事先在HTML中定义一个元素，并设置id属性
 * JSX中调用ReactDOM.render方法，第一个参数为需要插入的组件，第二个参数就是之前定义的这个父级DOM元素
 
-    //定义DOM元素
+
     <div id="app"></div>
     <script type="text/babel">
         //自定义组件
@@ -327,3 +327,11 @@ React中每个组件可以存储自己的当前状态，React的渲染结果是�
                 });
         }
         })
+
+###组件属性props
+React可以传递属性给组件，方法和html中差不多，可以通过this.props获取组件属性<br/>
+控制属性的API：<br/>
+* this.props:获取属性值
+* getDefaultProps:获取默认属性对象，会被调用一次，返回值会被缓存起来，当组件被 实例化后如果传入的属性没有值，则会返回默认值
+* this.props.children:子节点属性
+* propsTypes:属性类型检查
