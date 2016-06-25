@@ -25,32 +25,49 @@
                 getInitialState:function(){
                     return {
                         contextMessage:'hello world!',
-                        titleMessage:'React-demo',
                         test:'sakura1',
-                        isVisible:true,
-                        clickCount:0
+                        subMessage:[
+                            'sakura',
+                            'misaka',
+                            'mikoto'
+                        ]
                     }
-                },
-                clickProps:function(){
-                    this.setState({
-                        isVisible:false,
-                        clickCount:this.state.clickCount+1
-                    })
                 },
                 render:function(){
-                    var styleObj={
-                        display:this.state.isVisible?'block':'none'
-                    }
                     return  <div className="msg">
-                                <h3 className="title" style={styleObj}>{this.state.titleMessage}</h3>
+                                <h3 className="title">{this.props.title}</h3>
                                 {this.state.clickCount}
+                                <SubMessage messages={this.state.subMessage}/>
                                 <br/>
-                                <button onClick={this.clickProps}>按钮</button>
+                                <button>按钮</button>
                             </div>
                 }
             });
+            var SubMessage=React.createClass({
+                getDefaultProps:function(){
+                    return {
+                        messages:[
+                            '呵呵',
+                            '蛤蛤',
+                            '嘿嘿'
+                        ]
+                    }
+                },
+                render:function(){
+                    var msgs=[];
+                    this.props.messages.forEach(function(msg,index){
+                        msgs.push(
+                            <p>我叫：{msg}</p>
+                        )
+                    });
+                    return (
+                        <div>{msgs}</div>
+                    )
+                }
+            });
+            var title='Error!'
             var messageBox=ReactDOM.render(
-                <MessageBox/>,
+                <MessageBox title={title}/>,
                 document.getElementById('app'),
                 function(){
                     console.log('渲染完成!');
