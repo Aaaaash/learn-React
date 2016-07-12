@@ -14,11 +14,22 @@ class Comment extends React.Component{
     }
 }
 class CommentForm extends React.Component{
+    handleSubmit(e){
+        e.preventDefault();
+        const author=this.refs.author.getDOMNode().value.trim();
+        const body=this.refs.body.getDOMNode().value.trim();
+        const form=this.refs.form.getDOMNode();
+        this.props.onSubmit({author:author,body:body});
+        console.log(author,body);
+        form.reset();
+    }
     render(){
         return (
-            <div className="comment-form">
-                CommentForm
-            </div>
+            <form className="comment-form" ref="form" onSubmit={e=>{this.handleSubmit(e)}}>
+                <input type="text" placeholder="Your name" ref="author"/>
+                <input type="text" placeholder="Input your comment" ref="body"/>
+                <input type="submit" value="Add Comment"/>
+            </form>
         );
     }
 }
@@ -62,7 +73,6 @@ class CommentBox extends React.Component{
             url:this.props.url,
             dataType:"json",
             success:comments =>{
-                // console.log(this)
                 this.setState({comments:comments});
             },
             error:(xhr,status,err)=>{
@@ -70,13 +80,37 @@ class CommentBox extends React.Component{
             }
         });
     }
+
+    handleNewComment(comment){
+        const comments=this.state.comments;
+        const newComments=comments.concat([comment]);
+        this.setState({
+            comments:newComments
+        });
+        setTimeout(()=>{
+            $.ajax({
+                url:this.props.url,
+                dataType:"json",
+                type:"POST",
+                data:comment,
+                success:comments=>{
+                    this.setState({comments:comments});
+                },
+                error:(xhr,status,err)=>{
+                    console.log(err.toString());
+                    this.setState({comments:comments});
+                }
+            });
+        },2000);
+    }
+
     render(){
         return (
             <div className="comment-box">
                 <h1>Comments</h1>
                 {/*2.父组件通过属性传递这个数组给子组件*/}
                 <CommentList comments={this.state.comments}/>
-                <CommentForm/>
+                <CommentForm onSubmit={comment =>this.handleNewComment(comment)}/>
             </div>
         );
     }
