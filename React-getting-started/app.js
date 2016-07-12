@@ -46,14 +46,29 @@ var other=[
     {author:"misaka",body:"this is my comment2"}
 ];
 class CommentBox extends React.Component{
-    constructor(){
+    constructor(props){
         this.state={
-            comments:[
-
-            ]
+            comments:props.comments||[]
         };
         // 也可以通过state状态来传递,组建的状态 state被改变会引发组件重新渲染
         // 当组件状态被改变时，只会重新渲染真正改变了状态的部分
+    }
+    componentDidMount(){
+        this.loadDataFromServer();
+    }
+
+    loadDataFromServer(){
+        $.ajax({
+            url:this.props.url,
+            dataType:"json",
+            success:comments =>{
+                // console.log(this)
+                this.setState({comments:comments});
+            },
+            error:(xhr,status,err)=>{
+                console.log(err.toString());
+            }
+        });
     }
     render(){
         return (
@@ -67,6 +82,6 @@ class CommentBox extends React.Component{
     }
 }
 box=React.render(
-    <CommentBox/>,
+    <CommentBox url="comments.json"/>,
     document.getElementById('content')
 );
