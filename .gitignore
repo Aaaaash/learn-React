@@ -2,7 +2,4 @@
 /React-comment-jike/node_modules
 /comments-demo/node_modules
 /bootstrap-react/node_modules
-/React-responsive-page/js/babel-browser.js
-/React-responsive-page/js/react.min.js
-/React-responsive-page/js/react-dom.min.js
-/React-responsive-page/js/jquery.min.js
+/React-responsive-page/node_modules
