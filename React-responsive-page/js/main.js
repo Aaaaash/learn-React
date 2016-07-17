@@ -1,10 +1,38 @@
+// 菜单栏信息数据
+var menuData=[
+    {
+        imgUrl:"",
+        imgTitle:"Intro",
+        menuTitle:"Intro",
+        active:true
+    },
+    {
+        imgUrl:"",
+        imgTitle:"my skills",
+        menuTitle:"Skills",
+        active:false
+    },
+    {
+        imgUrl:"",
+        imgTitle:"about me!",
+        menuTitle:"About me",
+        active:false
+    },
+    {
+        imgUrl:"",
+        imgTitle:"contect",
+        menuTitle:"Contact",
+        active:false
+    }
+];
+
 var SideBox=React.createClass({
     // 侧边栏父组件
     render:function(){
         return (
             <section className="left-side">
                 <SideHead/>
-                <SideMenu/>
+                <SideMenu  menuData={menuData}/>
                 <SideFooter/>
             </section>
         )
@@ -12,6 +40,12 @@ var SideBox=React.createClass({
 });
 var SideHead=React.createClass({
     // 侧边栏头部组件
+    getInitialState:function(){
+        return {
+            userName:"秀的包",
+            userJob:"a web developer!"
+        }
+    },
     render:function(){
         return (
             <div className="head clearfix">
@@ -19,55 +53,46 @@ var SideHead=React.createClass({
                     <img src="img/head-img.jpg" alt="it's me!" />
                 </div>
                 <div className="head-title fr">
-                    <h2>秀的包</h2>
+                    <h2>{this.state.userName}</h2>
                     <p>
-                        a web developer!
+                        {this.state.userJob}
                     </p>
                 </div>
             </div>
         )
     }
 });
+
 var SideMenu=React.createClass({
     // 侧边栏菜单组件
     render:function(){
+        var menuData=this.props.menuData.map(function(item){
+            return (
+                <MenuItem {...item}/>
+            )
+        });
         return (
             <div className="menu">
                 <ul className="menu-list">
-                    <li className="menu-item clearfix active">
-                        <div className="menu-icon fl">
-                            <img src="" title="intro" />
-                        </div>
-                        <div className="menu-title fr">
-                            Intro
-                        </div>
-                    </li>
-                    <li className="menu-item clearfix">
-                        <div className="menu-icon fl">
-                            <img src="" title="Protfolio" />
-                        </div>
-                        <div className="menu-title fr">
-                            Protfolio
-                        </div>
-                    </li>
-                    <li className="menu-item clearfix">
-                        <div className="menu-icon fl">
-                            <img src="" title="About Me" />
-                        </div>
-                        <div className="menu-title fr">
-                            About Me
-                        </div>
-                    </li>
-                    <li className="menu-item clearfix">
-                        <div className="menu-icon fl">
-                            <img src="" title="Contact" />
-                        </div>
-                        <div className="menu-title fr">
-                            Contact
-                        </div>
-                    </li>
+                    {/*这里存放菜单栏数据*/}
+                    {menuData}
                 </ul>
             </div>
+        )
+    }
+});
+var MenuItem=React.createClass({
+    render:function(){
+        console.log(this.props);
+        return (
+            <li className={this.props.active?"menu-item clearfix active":"menu-item clearfix"} onClick={this.handleScroll}>
+                <div className="menu-icon fl">
+                    <img src={this.props.imgUrl} title={this.props.imgTitle} />
+                </div>
+                <div className="menu-title fr">
+                    {this.props.menuTitle}
+                </div>
+            </li>
         )
     }
 });
@@ -103,19 +128,18 @@ var SideFooter=React.createClass({
     }
 });
 
-
 var MainBox=React.createClass({
     // 右侧主体父组件
     render:function(){
         return (
-            <section className="main">
+            <section className="main" ref="main-box">
                 <MainHeader/>
                 <MainSkill/>
                 <MainAbout/>
                 <MainContact/>
                 <MainFooter/>
             </section>
-        )
+        );
     }
 });
 var MainHeader=React.createClass({
