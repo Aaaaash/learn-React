@@ -26,7 +26,7 @@ var MainHeader=React.createClass({
                     <p className="say-title">
                         Ligula scelerisque justo sem accumsan diam quisvitae natoque dictum sollicitudin elementum.
                     </p>
-                    <p className="know-more">Know more</p>
+                    <p className="know-more">1234 more</p>
                 </div>
             </div>
         )
@@ -111,8 +111,8 @@ var MainContact=React.createClass({
                         Elementum sem parturient nulla quam placerat viverra mauris non cum elit tempus ullamcorper dolor. Libero rutrum ut lacinia donec curae mus. Eleifend id porttitor ac ultricies lobortis sem nunc orci ridiculus faucibus a consectetur. Porttitor curae mauris urna mi dolor.
                     </p>
                     <form className="contact-form" action="javascript:;" method="post">
-                        <input className="contact-input" type="text" name="name" value="" placeholder="Name" />
-                        <input className="contact-input" type="email" name="email" value="" placeholder="Email" />
+                        <input className="contact-input" type="text" name="name" placeholder="Name" />
+                        <input className="contact-input" type="email" name="email" placeholder="Email" />
                         <textarea name="message" placeholder="Message" className="contact-textarea"></textarea>
                         <input type="button" value="Send Message" className="contact-button"/>
                     </form>

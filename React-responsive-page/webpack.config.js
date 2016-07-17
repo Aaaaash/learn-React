@@ -1,5 +1,9 @@
+var webpack=require('webpack');
 module.exports={
-    entry:"./js/main.js",
+    entry:[
+        "webpack/hot/only-dev-server",
+        "./js/main.js"
+    ],
     output:{
         path:"./assets/",
         filename:"app.js"
@@ -7,7 +11,14 @@ module.exports={
     devtool:"source-map",
     module:{
         loaders:[
-            {test:/\.js$/,exclude:/node_modules/,loader:"react-hot!babel"}
+            {
+                test:/\.js$/,
+                exclude:/node_modules/,
+                loader:"react-hot!babel"
+            }
         ]
-    }
+    },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin()
+    ]
 };

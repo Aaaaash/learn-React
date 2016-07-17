@@ -10,7 +10,7 @@ var menuData=[
         imgUrl:"",
         imgTitle:"Intro",
         menuTitle:"Intro",
-        active:true
+        active:false
     },
     {
         imgUrl:"",
@@ -22,7 +22,7 @@ var menuData=[
         imgUrl:"",
         imgTitle:"about me!",
         menuTitle:"About me",
-        active:false
+        active:true
     },
     {
         imgUrl:"",

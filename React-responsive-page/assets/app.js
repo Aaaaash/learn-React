@@ -21332,7 +21332,7 @@
 	    imgUrl: "",
 	    imgTitle: "Intro",
 	    menuTitle: "Intro",
-	    active: true
+	    active: false
 	}, {
 	    imgUrl: "",
 	    imgTitle: "my skills",
@@ -21342,7 +21342,7 @@
 	    imgUrl: "",
 	    imgTitle: "about me!",
 	    menuTitle: "About me",
-	    active: false
+	    active: true
 	}, {
 	    imgUrl: "",
 	    imgTitle: "contect",
@@ -21425,6 +21425,8 @@
 	
 	"use strict";
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	// 左侧菜单栏子组件
 	var React = __webpack_require__(1);
 	var SideMenu = React.createClass({
@@ -21432,8 +21434,8 @@
 	
 	    // 侧边栏菜单组件
 	    render: function render() {
-	        var menuData = this.props.menuData.map(function (item) {
-	            return React.createElement(MenuItem, item);
+	        var menuData = this.props.menuData.map(function (item, index) {
+	            return React.createElement(MenuItem, _extends({}, item, { key: index }));
 	        });
 	        return React.createElement(
 	            "div",

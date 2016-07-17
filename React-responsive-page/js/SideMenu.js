@@ -3,9 +3,9 @@ var React=require('react');
 var SideMenu=React.createClass({
     // 侧边栏菜单组件
     render:function(){
-        var menuData=this.props.menuData.map(function(item){
+        var menuData=this.props.menuData.map(function(item,index){
             return (
-                <MenuItem {...item}/>
+                <MenuItem {...item} key={index}/>
             )
         });
         return (
