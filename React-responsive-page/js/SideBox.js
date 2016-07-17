@@ -31,6 +31,29 @@ var menuData=[
         active:false
     }
 ];
+// 链接信息数据
+var menuLink=[
+    {
+        linkUrl:"",
+        imgUrl:"",
+        linkText:"weibo"
+    },
+    {
+        linkUrl:"",
+        imgUrl:"",
+        linkText:"github"
+    },
+    {
+        linkUrl:"",
+        imgUrl:"",
+        linkText:"blog"
+    },
+    {
+        linkUrl:"",
+        imgUrl:"",
+        linkText:"zhihu"
+    },
+];
 var SideBox=React.createClass({
     // 侧边栏父组件
     render:function(){
@@ -38,7 +61,7 @@ var SideBox=React.createClass({
             <section className="left-side">
                 <SideHead/>
                 <SideMenu  menuData={menuData}/>
-                <SideFooter/>
+                <SideFooter menuLink={menuLink}/>
             </section>
         )
     }

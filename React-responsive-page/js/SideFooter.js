@@ -3,31 +3,29 @@ var React=require('react');
 var SideFooter=React.createClass({
     // 侧边栏底部组件
     render:function(){
+        var linkData=this.props.menuLink.map(function(item,index){
+            return (
+                <LinkItem {...item} key={index}/>
+            )
+        });
         return (
             <div className="head-footer">
                 <ul className="footer-list">
-                    <li className="footer-item">
-                        <a href="javascript:;">
-                            weibo
-                        </a>
-                    </li>
-                    <li className="footer-item">
-                        <a href="javascript:;">
-                            github
-                        </a>
-                    </li>
-                    <li className="footer-item">
-                        <a href="javascript:;">
-                            blog
-                        </a>
-                    </li>
-                    <li className="footer-item">
-                        <a href="javascript:;">
-                            zhihu
-                        </a>
-                    </li>
+                    {linkData}
                 </ul>
             </div>
+        )
+    }
+});
+var LinkItem=React.createClass({
+    render:function(){
+        return (
+            <li className="footer-item">
+                <a href={this.props.linkUrl}>
+                    <img src={this.props.imgUrl} title={this.props.linkText}></img>
+                    {this.props.linkText}
+                </a>
+            </li>
         )
     }
 });

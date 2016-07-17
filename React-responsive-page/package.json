@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "browser-sync start --server --files \"css/*.css,*.html,js/*.js\"",
-    "watch": "webpack-dev-server --inline --hot"
+    "dev": "webpack",
+    "watch": "webpack-dev-server --devtool eval --progress --colors --hot"
   },
   "author": "sakura",
   "license": "ISC",

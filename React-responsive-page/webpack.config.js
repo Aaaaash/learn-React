@@ -1,12 +1,16 @@
 var webpack=require('webpack');
+var path = require('path');
+var publicPath = 'http://127.0.0.1:3000/';
 module.exports={
     entry:[
-        "webpack/hot/only-dev-server",
+        'webpack-dev-server/client?http://127.0.0.1:3000',
+        'webpack/hot/only-dev-server',
         "./js/main.js"
     ],
     output:{
-        path:"./assets/",
-        filename:"app.js"
+        path:path.join(__dirname,"./assets/"),
+        filename:"app.js",
+        publicPath: publicPath
     },
     devtool:"source-map",
     module:{

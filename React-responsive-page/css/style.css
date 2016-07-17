@@ -45,7 +45,9 @@ a{text-decoration: none;}
 .footer-item{
     display: inline-block;width: 0.4rem;height: 0.4rem
 }
-
+.footer-item a{
+    color: #fff
+}
 /*主体部分*/
 .main{
     width: 80%;margin-left: 20%;font-size: 0.14rem
