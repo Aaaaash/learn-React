@@ -9,6 +9,7 @@
   "author": "sakura",
   "license": "MIT",
   "devDependencies": {
+    "babel": "^6.5.2",
     "browser-sync": "^2.13.0"
   }
 }

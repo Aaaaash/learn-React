@@ -22,14 +22,16 @@ var MainComponent=React.createClass({
         }
     },
     componentDidMount:function(){
+        var _this=this;
         PubSub.subscribe(deleteItem,function(evName,data){
-            var newArr=this.state.listArr.filter(function(item,index){
+            var newArr=_this.state.listArr.filter(function(item,index){
                 return item._id!=data
             });
-            this.setState({
+            console.log(newArr);
+            _this.setState({
                 listArr:newArr
             });
-        }.bind(this));
+        });
     },
     addItem:function(data){
         this.state.listArr.push(data);

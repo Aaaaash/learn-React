@@ -1,0 +1,134 @@
+body,ol,ul,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div,dl,dt,dd,input{margin:0;padding:0;}
+html{font-size: 625%;;font-family: Helvetica,"Microsoft YaHei";background-attachment:fixed;overflow-x: hidden;-webkit-overflow-scrolling:touch;}
+body{background-color: #f5fafa}
+body ::selection {color:#FFFFFF;background-color:#333;text-shadow:none;}
+body ::-moz-selection {color:#FFFFFF;background-color:#333;text-shadow:none;}
+img{border:none;}
+li{list-style-type: none;}
+input,select,textarea{outline:none;}
+textarea{resize:none;}
+a{text-decoration: none;}
+/*清除浮动*/
+.clearfix:after{display: block;clear: both;content: '';height: 0;}
+.clearfix{zoom:1;}
+/*通用样式*/
+.fl{float:left}
+.fr{float:right}
+.sm-tit{font-size: 0.5rem;font-weight: normal}
+
+/*侧边栏*/
+.left-side{
+    width: 20%;height: 100%;background-color: #222629;position: fixed;left:0;top: 0;font-size: 0.14rem;color: #fff;box-shadow: inset -0.09rem 0 0.09rem 0 rgba(0, 0, 0, 0.125)
+}
+/*头像部分*/
+.head{margin: 0.4rem}
+.head-img{width: 0.48rem;height: 0.48rem;}
+.head-img img{width: 100%;height: 100%}
+.head-title h2{font-size: 0.28rem}
+.head-title p{font-size: 0.16rem;color: rgba(255,255,255,0.5)}
+
+/*菜单列表*/
+.menu-item{
+    padding:0.1rem 0.4rem;font-size: 0.2rem;height: 0.44rem;line-height: 0.44rem;cursor: pointer;color: rgba(255,255,255,0.5)
+}
+.menu-list .active{
+    background-color: rgb(25,32,34);box-shadow: inset 0 0 0.08rem 0 rgba(0, 0, 0, 0.125);color: rgb(255,255,255)
+}
+
+/*底部链接*/
+.head-footer{
+    position: absolute;bottom:0;width: 100%
+}
+.footer-list{
+    text-align: center;font-size: 0.16rem;padding: 0 0 0.15rem 0
+}
+.footer-item{
+    display: inline-block;width: 0.4rem;height: 0.4rem
+}
+
+/*主体部分*/
+.main{
+    width: 80%;margin-left: 20%;font-size: 0.14rem
+}
+/*主体header*/
+.main-header{
+    width: 100%;height: 8rem;background: url(../img/banner.jpg) left center no-repeat;background-size: cover;position: relative
+}
+.header-box{
+    text-align: center;position: absolute;top:50%;margin-top: -2rem;width: 100%;height: 100%;color: rgba(255,255,255,0.75)
+}
+.say-hello{
+    font-size: 0.6rem;width: 60%;display: inline-block;font-weight: normal;line-height: 0.8rem
+}
+.say-title{
+    font-size: 0.3rem;width: 60%;display: inline-block;margin-top: 0.2rem
+}
+.know-more{
+    padding: 0.15rem 0.4rem;background-color: #9ececc;width: 1rem;display:block;margin: 0.5rem auto;cursor: pointer;border-radius: 0.05rem;color: #fff;font-size: 0.2rem;box-shadow: 0 0.025rem 0 rgba(255,255,255,0.4)
+}
+/*主体skill*/
+.main-skill{
+    width: 100%;box-shadow:inset 0 1px 0 0 rgba(0, 0, 0, 0.05), inset 0 0.02rem 0.02rem 0 rgba(0, 0, 0, 0.025)
+}
+.skill-box{
+    padding:0.75rem 1rem;color: #666;text-align: center;
+}
+.skill-title{}
+.skill-text{
+    font-size: 0.3rem;margin-top: 0.3rem
+}
+.my-demo{
+    margin-top: 0.45rem
+}
+.demo-item{
+    width: 30%;height: 30%;display: inline-block;position: relative;margin: 0.2rem;box-sizing: border-box;box-shadow: 0 0.03rem 0.05rem rgba(0, 0, 0, 0.05)
+}
+.demo-title{
+    width: 100%;height: 20%;background: #fff;line-height: 0.55rem;font-size: 0.2rem
+}
+.demo-img{
+    width: 100%;height: 80%
+}
+/*主体Aboutme*/
+.main-about{
+    width: 100%;background-color: #ecf1f1;box-shadow:inset 0 1px 0 0 rgba(0, 0, 0, 0.05), inset 0 0.02rem 0.02rem 0 rgba(0, 0, 0, 0.025)
+}
+.about-box{
+    padding:0.75rem 1rem;color: #666;text-align: center
+}
+.me-img{
+    width: 100%;height: 5rem;border: 1px solid #ccc;margin-top: 0.3rem
+}
+.me-content{
+    width: 100%;font-size: 0.3rem;margin-top: 0.35rem
+}
+/*主体Contact*/
+.main-contact{
+    width: 100%;background-color: #e8edec;box-shadow:inset 0 1px 0 0 rgba(0, 0, 0, 0.05), inset 0 0.02rem 0.02rem 0 rgba(0, 0, 0, 0.025)
+}
+.contact-box{
+    padding: 0.5rem 1rem;color: #666;text-align: center
+}
+.contact-text{
+    font-size: 0.3rem;margin-top: 0.3rem
+}
+.contact-form{
+    margin-top: 0.35rem
+}
+.contact-input{
+    width: 45%;box-sizing: border-box;display: inline-block;margin: 0.2rem;line-height: 0.5rem;text-indent: 0.15rem;border-radius: 0.08rem;font-size: 0.2rem;border: 1px solid #ccc
+}
+.contact-textarea{
+    width: 90%;height: 1.5rem;line-height: 0.3rem;padding: 0.2rem;font-size: 0.2rem;border-radius: 0.08rem;border: 1px solid #ccc
+}
+.contact-button{
+    width: 2rem;background-color: #9ececc;line-height: 0.7rem;margin-top: 0.15rem;border: none;border-radius: 0.05rem;cursor: pointer;font-size: 0.2rem;color: #fff
+}
+
+/*主体footer*/
+.main-footer{
+    width: 100%;background-color: #dce3e2;box-shadow:inset 0 1px 0 0 rgba(0, 0, 0, 0.05), inset 0 0.02rem 0.02rem 0 rgba(0, 0, 0, 0.025)
+}
+.footer-box{
+    padding:0.5rem 1rem;text-align: center;color: #666;font-size: 0.2rem
+}
