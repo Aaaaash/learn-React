@@ -9,7 +9,7 @@ var MyApp=React.createClass({
         return (
             <div>
                 <SideBox handleScroll={this.handleScroll}/>
-                <MainBox/>
+                <MainBox handleScroll={this.handleScroll}/>
             </div>
         )
     },
@@ -37,7 +37,6 @@ var MyApp=React.createClass({
                 },1000);
                 break;
         }
-        console.log((index*500)+'px')
     }
 })
 ReactDOM.render(

@@ -9,7 +9,7 @@ var MainBox=React.createClass({
     render:function(){
         return (
             <section className="main" ref="main-box">
-                <MainHeader/>
+                <MainHeader handleScroll={this.props.handleScroll}/>
                 <MainSkill/>
                 <MainAbout/>
                 <MainContact/>

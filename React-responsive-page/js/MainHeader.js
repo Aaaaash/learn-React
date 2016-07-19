@@ -9,7 +9,7 @@ var MainHeader=React.createClass({
                     <p className="say-title">
                         Ligula scelerisque justo sem accumsan diam quisvitae natoque dictum sollicitudin elementum.
                     </p>
-                    <p className="know-more">更多</p>
+                    <p className="know-more" onClick={this.props.handleScroll.bind(this,1)}>更多</p>
                 </div>
             </div>
         )
