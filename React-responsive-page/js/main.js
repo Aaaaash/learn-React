@@ -6,10 +6,15 @@ var MainBox=require('./MainBox');
 var $=require('jquery');
 var MyApp=React.createClass({
     // app父组件
+    handleControl:function(){
+        $('.left-side').stop().animate({
+            left:0
+        })
+    },
     render:function(){
         return (
             <div>
-                <ControlBtn/>
+                <ControlBtn handleControl={this.handleControl}/>
                 <SideBox handleScroll={this.handleScroll}/>
                 <MainBox handleScroll={this.handleScroll}/>
             </div>
