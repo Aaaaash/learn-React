@@ -5,11 +5,11 @@ var MainHeader=React.createClass({
         return(
             <div className="main-header">
                 <div className="header-box">
-                    <h2 className="say-hello">Hi!,My name is Misaka. I'm a web developer</h2>
+                    <h2 className="say-hello">Hi!,My name is 秀的包. I'm a web developer</h2>
                     <p className="say-title">
                         Ligula scelerisque justo sem accumsan diam quisvitae natoque dictum sollicitudin elementum.
                     </p>
-                    <p className="know-more">4321 more</p>
+                    <p className="know-more">更多</p>
                 </div>
             </div>
         )

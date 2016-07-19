@@ -1,16 +1,14 @@
 var webpack=require('webpack');
-var path = require('path');
-var publicPath = 'http://127.0.0.1:3000/';
 module.exports={
     entry:[
-        'webpack-dev-server/client?http://127.0.0.1:3000',
-        'webpack/hot/only-dev-server',
+        "webpack-dev-server/client?http://0.0.0.0:3000",
+        "webpack/hot/only-dev-server",
         "./js/main.js"
     ],
     output:{
-        path:path.join(__dirname,"./assets/"),
+        path:"./assets/",
         filename:"app.js",
-        publicPath: publicPath
+        publicPath: '/assets' 
     },
     devtool:"source-map",
     module:{
@@ -18,7 +16,7 @@ module.exports={
             {
                 test:/\.js$/,
                 exclude:/node_modules/,
-                loader:"react-hot!babel"
+                loaders: ['react-hot', 'babel?presets[]=react,presets[]=es2015']
             }
         ]
     },

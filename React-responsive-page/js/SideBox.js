@@ -9,26 +9,22 @@ var menuData=[
     {
         imgUrl:"",
         imgTitle:"Intro",
-        menuTitle:"Intro",
-        active:false
+        menuTitle:"Intro"
     },
     {
         imgUrl:"",
         imgTitle:"my skills",
-        menuTitle:"Skills",
-        active:false
+        menuTitle:"Skills"
     },
     {
         imgUrl:"",
         imgTitle:"about me!",
-        menuTitle:"About me",
-        active:true
+        menuTitle:"About me"
     },
     {
         imgUrl:"",
         imgTitle:"contect",
-        menuTitle:"Contact",
-        active:false
+        menuTitle:"Contact"
     }
 ];
 // 链接信息数据
@@ -36,7 +32,7 @@ var menuLink=[
     {
         linkUrl:"",
         imgUrl:"",
-        linkText:"weibo"
+        linkText:"sina"
     },
     {
         linkUrl:"",
