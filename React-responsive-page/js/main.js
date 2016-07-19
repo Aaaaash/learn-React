@@ -1,5 +1,6 @@
 var React=require('react');
 var ReactDOM=require('react-dom');
+var ControlBtn=require('./ControlBtn');
 var SideBox=require('./SideBox');
 var MainBox=require('./MainBox');
 var $=require('jquery');
@@ -8,6 +9,7 @@ var MyApp=React.createClass({
     render:function(){
         return (
             <div>
+                <ControlBtn/>
                 <SideBox handleScroll={this.handleScroll}/>
                 <MainBox handleScroll={this.handleScroll}/>
             </div>
