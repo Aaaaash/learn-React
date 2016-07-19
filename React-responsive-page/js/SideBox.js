@@ -56,7 +56,7 @@ var SideBox=React.createClass({
         return (
             <section className="left-side">
                 <SideHead/>
-                <SideMenu  menuData={menuData}/>
+                <SideMenu  menuData={menuData} handleScroll={this.props.handleScroll}/>
                 <SideFooter menuLink={menuLink}/>
             </section>
         )

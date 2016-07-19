@@ -8,7 +8,7 @@ module.exports={
     output:{
         path:"./assets/",
         filename:"app.js",
-        publicPath: '/assets' 
+        publicPath: '/assets'
     },
     devtool:"source-map",
     module:{

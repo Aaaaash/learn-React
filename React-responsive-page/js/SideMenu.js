@@ -25,6 +25,7 @@ var SideMenu=React.createClass({
             isActive[i]=false;
         }
         isActive[index]=true;
+        this.props.handleScroll(index);
         this.setState({
                 active:isActive
         })
