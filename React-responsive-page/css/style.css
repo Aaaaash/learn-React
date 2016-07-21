@@ -139,7 +139,7 @@ a{text-decoration: none;}
 
 /*控制按钮*/
 .control-btn{
-    display:none;width: 0.35rem;height: 0.25rem;padding: 0.2rem;background-color: rgba(255,255,255,0.4);border-radius: 0.1rem;display:block;z-index: 1000;position: absolute;font-size: 0.25rem;left: 0.2rem;top: 0.2rem;text-align: center;line-height: 0.25rem;color: #fff
+    display:none;width: 0.35rem;height: 0.25rem;padding: 0.2rem;background-color: rgba(255,255,255,0.4);border-radius: 0.1rem;z-index: 1000;position: absolute;font-size: 0.25rem;left: 0.2rem;top: 0.2rem;text-align: center;line-height: 0.25rem;color: #fff
 }
 @media screen and (max-width:736px){
     html{
