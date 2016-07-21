@@ -1,7 +1,7 @@
 var webpack=require('webpack');
 module.exports={
     entry:[
-        "webpack-dev-server",
+        "webpack-dev-server/client?http://0.0.0.0:3000",
         "webpack/hot/only-dev-server",
         "./js/main.js"
     ],
@@ -17,6 +17,11 @@ module.exports={
                 test:/\.js$/,
                 exclude:/node_modules/,
                 loaders: ['react-hot', 'babel?presets[]=react,presets[]=es2015']
+            },
+            {
+                test:/\.json$/,
+                exclude:/node_modules/,
+                loader: 'json'
             }
         ]
     },

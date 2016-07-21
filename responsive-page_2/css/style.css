@@ -84,5 +84,26 @@ a{text-decoration: none;}
 
 /*右侧主面板*/
 .right-main{
-    background-color: #fafafa;width: 85%;height: 2rem
+    background-color: #fafafa;width: 85%;margin-left: 15%;
+}
+.img-box{
+    width: 100%;height: 100%;padding:0.4rem 0.4rem 0 0.4rem;
+}
+.list-tit{
+    color: #444;font-size: 0.22rem;font-weight: normal;line-height: 0.43rem
+}
+.list-tit .img-num{
+    color: #c0c0c0;margin-left: 0.25rem;font-size: 0.14rem
+}
+.img-list{
+    width: 95%;height: 100%
+}
+.img-item{
+    width: 23%;height: 2.75rem;display: inline-block;margin:0.15rem
+}
+.photo{
+    background-color: #fff;width: 100%;height: 2.44rem
+}
+.time{
+    color: #c0c0c0;font-size: 0.16rem
 }

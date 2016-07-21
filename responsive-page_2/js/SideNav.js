@@ -4,7 +4,7 @@ var SideNav=React.createClass({
     render:function(){
         var renderItem=this.props.itemData.map(function(item,index){
             return (
-                <NavItem tit={item.tit} isActive={item.isActive}/>
+                <NavItem tit={item.tit} isActive={item.isActive} key={index}/>
             )
         })
         return (
