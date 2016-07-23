@@ -4,7 +4,7 @@ var MainList=React.createClass({
     render:function(){
         var imgItem=this.props.imgData.imgInfo.map(function(item,index){
             return (
-                <ImgItem {...item} key={index} mouseEnter={this.handleMouseEnter} mouseLeave={this.handleMouseLevae}/>
+                <ImgItem {...item} key={index} mouseEnter={this.handleMouseEnter} mouseLeave={this.handleMouseLevae} handleShow={this.props.handleShow}/>
             )
         }.bind(this));
         return (
@@ -36,7 +36,7 @@ var ImgItem=React.createClass({
     render:function(){
         return (
             <li className="img-item">
-                <img className="photo" alt={this.props.tit} src={this.props.url} title={this.props.tit} onMouseEnter={this.props.mouseEnter} onMouseLeave={this.props.mouseLeave}/>
+                <img className="photo" alt={this.props.tit} src={this.props.url} title={this.props.tit} onMouseEnter={this.props.mouseEnter} onMouseLeave={this.props.mouseLeave} onClick={this.props.handleShow}/>
                 <span className="photo-content">{this.props.content}</span>
                 <p className="time">{this.props.time}</p>
             </li>
