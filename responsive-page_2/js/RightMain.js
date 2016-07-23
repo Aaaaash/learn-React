@@ -25,7 +25,7 @@ var RightMain=React.createClass({
     showShadowBox:function(){
         $(".shadow-box").fadeIn()
     },
-    hideShadowBox:function(){
+    hideShadowBox:function(e){
         $(".shadow-box").fadeOut()
     }
 });
