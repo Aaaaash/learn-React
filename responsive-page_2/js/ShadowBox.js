@@ -2,8 +2,8 @@ var React=require('react');
 var ShadowBox=React.createClass({
     render:function(){
         return (
-            <div className="shadow-box" onClick={this.props.hideShadow}>
-                1231
+            <div className="shadow-box" tabIndex="1" >
+                <span className="close-button" onClick={this.props.hideShadow}></span>
             </div>
         )
     }

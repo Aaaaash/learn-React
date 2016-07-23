@@ -23,10 +23,10 @@ var RightMain=React.createClass({
         )
     },
     showShadowBox:function(){
-        $(".shadow-box").fadeIn()
+        $(".shadow-box").fadeIn(300)
     },
-    hideShadowBox:function(e){
-        $(".shadow-box").fadeOut()
+    hideShadowBox:function(){
+        $(".shadow-box").fadeOut(300);
     }
 });
 module.exports=RightMain;
