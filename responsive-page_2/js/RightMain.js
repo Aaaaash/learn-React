@@ -23,9 +23,13 @@ var RightMain=React.createClass({
         )
     },
     showShadowBox:function(){
-        $(".shadow-box").fadeIn(300)
+        $("html").css("overflowY","hidden");
+        $(".shadow-box").height($(window)
+            .height()).fadeIn(300)
+            .css("top",$(document).scrollTop());
     },
     hideShadowBox:function(){
+        $("html").css("overflowY","scroll");
         $(".shadow-box").fadeOut(300);
     }
 });
