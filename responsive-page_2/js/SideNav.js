@@ -20,7 +20,7 @@ var SideNav=React.createClass({
 var NavItem=React.createClass({
     render:function(){
         return (
-            <li className={this.props.isActive?"nav-item active":"nav-item"}>{this.props.tit}</li>
+            <li className={this.props.isActive?"nav-item active":"nav-item"} href="javascript:;">{this.props.tit}</li>
         )
     }
 })

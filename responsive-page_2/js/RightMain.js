@@ -1,5 +1,6 @@
 var React=require('react');
 var MainList=require('./MainList');
+var ShadowBox=require('./ShadowBox');
 var ImgData=require('./ImgData.json');
 var RightMain=React.createClass({
     getInitialState:function(){
@@ -16,8 +17,12 @@ var RightMain=React.createClass({
         return (
             <div className="right-main">
                 {mainList}
+                <ShadowBox/>
             </div>
         )
+    },
+    showShadowBox:function(){
+        
     }
 });
 module.exports=RightMain;

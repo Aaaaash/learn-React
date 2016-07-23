@@ -11,7 +11,7 @@ var MainList=React.createClass({
             <div className="img-box">
                 <h4 className="list-tit">{this.props.imgData.tit}<span className="img-num">({this.props.imgData.num}photos)</span></h4>
                 <ul className="img-list">
-                    {/*这里是照片*/}
+                    {/*it's photos*/}
                     {imgItem}
                 </ul>
             </div>
@@ -20,13 +20,15 @@ var MainList=React.createClass({
     handleMouseEnter:function(e){
         var theImg=e.target;
         $(theImg).next().stop().animate({
-            height:'0.4rem'
+            height:'0.4rem',
+            opacity:1
         },300);
     },
     handleMouseLevae:function(e){
         var theImg=e.target;
         $(theImg).next().stop().animate({
-            height:'0'
+            height:'0',
+            opacity:0
         },300);
     }
 });
