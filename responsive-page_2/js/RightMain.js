@@ -25,12 +25,31 @@ var RightMain=React.createClass({
     showShadowBox:function(){
         $("html").css("overflowY","hidden");
         $(".shadow-box").height($(window)
-            .height()).fadeIn(300)
-            .css("top",$(document).scrollTop());
+            .height())
+            .css({
+                "top":$(document).scrollTop(),
+                "display":"block"
+            }).stop().animate({
+                opacity:1
+            },300,function(){
+                $(".imgBig-box").css("display","block").stop().animate({
+                    opacity:1,
+                    top:"0"
+                })
+            });
     },
     hideShadowBox:function(){
-        $("html").css("overflowY","scroll");
-        $(".shadow-box").fadeOut(300);
+        $(".imgBig-box").stop().animate({
+            opacity:0,
+            top:"-100%"
+        },function(){
+            $(".imgBig-box").css("display","none");
+            $(".shadow-box").animate({
+                    opacity:0
+                }).css("display","none");
+            $("html").css("overflowY","scroll");
+        });
+
     }
 });
 module.exports=RightMain;

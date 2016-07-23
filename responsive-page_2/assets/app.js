@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "ee99bd744722d562443a"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "cdeafbcf2bb650516082"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -29804,7 +29804,7 @@
 	    render: function render() {
 	        return React.createElement(
 	            "li",
-	            { className: this.props.isActive ? "nav-item active" : "nav-item" },
+	            { className: this.props.isActive ? "nav-item active" : "nav-item", href: "javascript:;" },
 	            this.props.tit
 	        );
 	    }
@@ -29857,8 +29857,10 @@
 	'use strict';
 	
 	var React = __webpack_require__(152);
-	var MainList = __webpack_require__(266);
-	var ImgData = __webpack_require__(268);
+	var $ = __webpack_require__(266);
+	var MainList = __webpack_require__(267);
+	var ShadowBox = __webpack_require__(268);
+	var ImgData = __webpack_require__(269);
 	var RightMain = React.createClass({
 	    displayName: 'RightMain',
 	
@@ -29869,13 +29871,40 @@
 	    },
 	    render: function render() {
 	        var mainList = this.state.imgData.map(function (item, index) {
-	            return React.createElement(MainList, { imgData: item, key: index });
-	        });
+	            return React.createElement(MainList, { imgData: item, key: index, handleShow: this.showShadowBox });
+	        }.bind(this));
 	        return React.createElement(
 	            'div',
 	            { className: 'right-main' },
-	            mainList
+	            mainList,
+	            React.createElement(ShadowBox, { hideShadow: this.hideShadowBox })
 	        );
+	    },
+	    showShadowBox: function showShadowBox() {
+	        $("html").css("overflowY", "hidden");
+	        $(".shadow-box").height($(window).height()).css({
+	            "top": $(document).scrollTop(),
+	            "display": "block"
+	        }).stop().animate({
+	            opacity: 1
+	        }, 300, function () {
+	            $(".imgBig-box").css("display", "block").stop().animate({
+	                opacity: 1,
+	                top: "0"
+	            });
+	        });
+	    },
+	    hideShadowBox: function hideShadowBox() {
+	        $(".imgBig-box").stop().animate({
+	            opacity: 0,
+	            top: "-100%"
+	        }, function () {
+	            $(".imgBig-box").css("display", "none");
+	            $(".shadow-box").animate({
+	                opacity: 0
+	            }).css("display", "none");
+	            $("html").css("overflowY", "scroll");
+	        });
 	    }
 	});
 	module.exports = RightMain;
@@ -29885,86 +29914,6 @@
 
 /***/ },
 /* 266 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(77), RootInstanceProvider = __webpack_require__(85), ReactMount = __webpack_require__(87), React = __webpack_require__(152); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
-	'use strict';
-	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
-	var React = __webpack_require__(152);
-	var $ = __webpack_require__(267);
-	var MainList = React.createClass({
-	    displayName: 'MainList',
-	
-	    render: function render() {
-	        var imgItem = this.props.imgData.imgInfo.map(function (item, index) {
-	            return React.createElement(ImgItem, _extends({}, item, { key: index, mouseEnter: this.handleMouseEnter, mouseLeave: this.handleMouseLevae }));
-	        }.bind(this));
-	        return React.createElement(
-	            'div',
-	            { className: 'img-box' },
-	            React.createElement(
-	                'h4',
-	                { className: 'list-tit' },
-	                this.props.imgData.tit,
-	                React.createElement(
-	                    'span',
-	                    { className: 'img-num' },
-	                    '(',
-	                    this.props.imgData.num,
-	                    'photos)'
-	                )
-	            ),
-	            React.createElement(
-	                'ul',
-	                { className: 'img-list' },
-	                imgItem
-	            )
-	        );
-	    },
-	    handleMouseEnter: function handleMouseEnter(e) {
-	        var theImg = e.target;
-	        $(theImg).next().stop().animate({
-	            height: '0.4rem'
-	        }, 300);
-	    },
-	    handleMouseLevae: function handleMouseLevae(e) {
-	        var theImg = e.target;
-	        $(theImg).next().stop().animate({
-	            height: '0'
-	        }, 300);
-	    }
-	});
-	var ImgItem = React.createClass({
-	    displayName: 'ImgItem',
-	
-	    render: function render() {
-	        return React.createElement(
-	            'li',
-	            { className: 'img-item' },
-	            React.createElement('img', { className: 'photo', alt: this.props.tit, src: this.props.url, title: this.props.tit, onMouseEnter: this.props.mouseEnter, onMouseLeave: this.props.mouseLeave }),
-	            React.createElement(
-	                'span',
-	                { className: 'photo-content' },
-	                this.props.content
-	            ),
-	            React.createElement(
-	                'p',
-	                { className: 'time' },
-	                this.props.time
-	            )
-	        );
-	    }
-	});
-	module.exports = MainList;
-	
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(259); if (makeExportsHot(module, __webpack_require__(152))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "MainList.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
-
-/***/ },
-/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*eslint-disable no-unused-vars*/
@@ -40044,7 +39993,153 @@
 
 
 /***/ },
+/* 267 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(77), RootInstanceProvider = __webpack_require__(85), ReactMount = __webpack_require__(87), React = __webpack_require__(152); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	'use strict';
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var React = __webpack_require__(152);
+	var $ = __webpack_require__(266);
+	var MainList = React.createClass({
+	    displayName: 'MainList',
+	
+	    render: function render() {
+	        var imgItem = this.props.imgData.imgInfo.map(function (item, index) {
+	            return React.createElement(ImgItem, _extends({}, item, { key: index, mouseEnter: this.handleMouseEnter, mouseLeave: this.handleMouseLevae, handleShow: this.props.handleShow }));
+	        }.bind(this));
+	        return React.createElement(
+	            'div',
+	            { className: 'img-box' },
+	            React.createElement(
+	                'h4',
+	                { className: 'list-tit' },
+	                this.props.imgData.tit,
+	                React.createElement(
+	                    'span',
+	                    { className: 'img-num' },
+	                    '(',
+	                    this.props.imgData.num,
+	                    'photos)'
+	                )
+	            ),
+	            React.createElement(
+	                'ul',
+	                { className: 'img-list' },
+	                imgItem
+	            )
+	        );
+	    },
+	    handleMouseEnter: function handleMouseEnter(e) {
+	        var theImg = e.target;
+	        $(theImg).next().stop().animate({
+	            height: '0.4rem',
+	            opacity: 1
+	        }, 300);
+	    },
+	    handleMouseLevae: function handleMouseLevae(e) {
+	        var theImg = e.target;
+	        $(theImg).next().stop().animate({
+	            height: '0',
+	            opacity: 0
+	        }, 300);
+	    }
+	});
+	var ImgItem = React.createClass({
+	    displayName: 'ImgItem',
+	
+	    render: function render() {
+	        return React.createElement(
+	            'li',
+	            { className: 'img-item' },
+	            React.createElement('img', { className: 'photo', alt: this.props.tit, src: this.props.url, title: this.props.tit, onMouseEnter: this.props.mouseEnter, onMouseLeave: this.props.mouseLeave, onClick: this.props.handleShow }),
+	            React.createElement(
+	                'span',
+	                { className: 'photo-content' },
+	                this.props.content
+	            ),
+	            React.createElement(
+	                'p',
+	                { className: 'time' },
+	                this.props.time
+	            )
+	        );
+	    }
+	});
+	module.exports = MainList;
+	
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(259); if (makeExportsHot(module, __webpack_require__(152))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "MainList.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
+
+/***/ },
 /* 268 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(77), RootInstanceProvider = __webpack_require__(85), ReactMount = __webpack_require__(87), React = __webpack_require__(152); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	'use strict';
+	
+	var React = __webpack_require__(152);
+	var $ = __webpack_require__(266);
+	var ShadowBox = React.createClass({
+	    displayName: 'ShadowBox',
+	
+	    render: function render() {
+	        var href = this.shareQzone();
+	        return React.createElement(
+	            'div',
+	            { className: 'shadow-box', tabIndex: '1' },
+	            React.createElement(
+	                'div',
+	                { className: 'imgBig-box' },
+	                React.createElement('span', { className: 'close-button', onClick: this.props.hideShadow }),
+	                React.createElement('img', { className: 'img-big fl', src: '../img/test_2.jpg' }),
+	                React.createElement(
+	                    'div',
+	                    { className: 'img-big-content fl' },
+	                    React.createElement(
+	                        'h4',
+	                        { className: 'big-tit' },
+	                        '大明宫词',
+	                        React.createElement('span', { className: 'img-star user-btn' })
+	                    ),
+	                    React.createElement('a', { version: '1.0', className: 'img-share user-btn', href: href, target: '_blank' })
+	                )
+	            )
+	        );
+	    },
+	    shareQzone: function shareQzone() {
+	        var p = {
+	            url: "https://sakub.github.io/learn-React/responsive-page_2/",
+	            showcount: '1', /*是否显示分享总数,显示：'1'，不显示：'0' */
+	            desc: 'qzone分享API测试', /*默认分享理由(可选)*/
+	            summary: 'qzone分享API测试', /*分享摘要(可选)*/
+	            title: 'qzone分享API测试', /*分享标题(可选)*/
+	            site: 'qzone分享API测试', /*分享来源 如：腾讯网(可选)*/
+	            pics: 'qzone分享API测试', /*分享图片的路径(可选)*/
+	            style: '202',
+	            width: 105,
+	            height: 31
+	        };
+	        var s = [];
+	        for (var i in p) {
+	            s.push(i + '=' + encodeURIComponent(p[i] || ''));
+	        }
+	        var href = "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?" + s.join('&');
+	        console.log(href);
+	        return href;
+	    }
+	});
+	module.exports = ShadowBox;
+	
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(259); if (makeExportsHot(module, __webpack_require__(152))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ShadowBox.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
+
+/***/ },
+/* 269 */
 /***/ function(module, exports) {
 
 	module.exports = [
