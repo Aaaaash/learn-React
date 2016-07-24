@@ -36,7 +36,7 @@ var ImgItem=React.createClass({
     render:function(){
         return (
             <li className="img-item">
-                <img className="photo" alt={this.props.tit} src={this.props.url} title={this.props.tit} onMouseEnter={this.props.mouseEnter} onMouseLeave={this.props.mouseLeave} onClick={this.props.handleShow}/>
+                <img className="photo" alt={this.props.tit} src={this.props.url} title={this.props.tit} onMouseEnter={this.props.mouseEnter} onMouseLeave={this.props.mouseLeave} onClick={this.props.handleShow.bind(this,this.props)}/>
                 <span className="photo-content">{this.props.content}</span>
                 <p className="time">{this.props.time}</p>
             </li>

@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "cdeafbcf2bb650516082"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "e94f5a343356fff1ad42"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -29860,16 +29860,18 @@
 	var $ = __webpack_require__(266);
 	var MainList = __webpack_require__(267);
 	var ShadowBox = __webpack_require__(268);
-	var ImgData = __webpack_require__(269);
+	var ImgData = __webpack_require__(270);
 	var RightMain = React.createClass({
 	    displayName: 'RightMain',
 	
 	    getInitialState: function getInitialState() {
 	        return {
-	            imgData: ImgData
+	            imgData: ImgData,
+	            activeData: []
 	        };
 	    },
 	    render: function render() {
+	        // var
 	        var mainList = this.state.imgData.map(function (item, index) {
 	            return React.createElement(MainList, { imgData: item, key: index, handleShow: this.showShadowBox });
 	        }.bind(this));
@@ -29877,32 +29879,35 @@
 	            'div',
 	            { className: 'right-main' },
 	            mainList,
-	            React.createElement(ShadowBox, { hideShadow: this.hideShadowBox })
+	            React.createElement(ShadowBox, { hideShadow: this.hideShadowBox, imgInfo: this.state.activeData })
 	        );
 	    },
-	    showShadowBox: function showShadowBox() {
+	    showShadowBox: function showShadowBox(data) {
+	        this.setState({
+	            activeData: data
+	        });
 	        $("html").css("overflowY", "hidden");
 	        $(".shadow-box").height($(window).height()).css({
 	            "top": $(document).scrollTop(),
 	            "display": "block"
 	        }).stop().animate({
 	            opacity: 1
-	        }, 300, function () {
+	        }, 200, function () {
 	            $(".imgBig-box").css("display", "block").stop().animate({
 	                opacity: 1,
 	                top: "0"
-	            });
+	            }, 300);
 	        });
 	    },
 	    hideShadowBox: function hideShadowBox() {
 	        $(".imgBig-box").stop().animate({
 	            opacity: 0,
-	            top: "-100%"
-	        }, function () {
+	            top: "-20%"
+	        }, 300, function () {
 	            $(".imgBig-box").css("display", "none");
 	            $(".shadow-box").animate({
 	                opacity: 0
-	            }).css("display", "none");
+	            }, 200).css("display", "none");
 	            $("html").css("overflowY", "scroll");
 	        });
 	    }
@@ -40055,7 +40060,7 @@
 	        return React.createElement(
 	            'li',
 	            { className: 'img-item' },
-	            React.createElement('img', { className: 'photo', alt: this.props.tit, src: this.props.url, title: this.props.tit, onMouseEnter: this.props.mouseEnter, onMouseLeave: this.props.mouseLeave, onClick: this.props.handleShow }),
+	            React.createElement('img', { className: 'photo', alt: this.props.tit, src: this.props.url, title: this.props.tit, onMouseEnter: this.props.mouseEnter, onMouseLeave: this.props.mouseLeave, onClick: this.props.handleShow.bind(this, this.props) }),
 	            React.createElement(
 	                'span',
 	                { className: 'photo-content' },
@@ -40083,6 +40088,7 @@
 	'use strict';
 	
 	var React = __webpack_require__(152);
+	var BigContent = __webpack_require__(269);
 	var $ = __webpack_require__(266);
 	var ShadowBox = React.createClass({
 	    displayName: 'ShadowBox',
@@ -40096,18 +40102,14 @@
 	                'div',
 	                { className: 'imgBig-box' },
 	                React.createElement('span', { className: 'close-button', onClick: this.props.hideShadow }),
-	                React.createElement('img', { className: 'img-big fl', src: '../img/test_2.jpg' }),
 	                React.createElement(
 	                    'div',
-	                    { className: 'img-big-content fl' },
-	                    React.createElement(
-	                        'h4',
-	                        { className: 'big-tit' },
-	                        '大明宫词',
-	                        React.createElement('span', { className: 'img-star user-btn' })
-	                    ),
-	                    React.createElement('a', { version: '1.0', className: 'img-share user-btn', href: href, target: '_blank' })
-	                )
+	                    { className: 'img-ctrl clearfix fl' },
+	                    React.createElement('div', { className: 'left-ctrl ctrl' }),
+	                    React.createElement('div', { className: 'right-ctrl ctrl' }),
+	                    React.createElement('img', { className: 'img-big', src: this.props.imgInfo.url })
+	                ),
+	                React.createElement(BigContent, { href: href, imgInfo: this.props.imgInfo })
 	            )
 	        );
 	    },
@@ -40119,7 +40121,7 @@
 	            summary: 'qzone分享API测试', /*分享摘要(可选)*/
 	            title: 'qzone分享API测试', /*分享标题(可选)*/
 	            site: 'qzone分享API测试', /*分享来源 如：腾讯网(可选)*/
-	            pics: 'qzone分享API测试', /*分享图片的路径(可选)*/
+	            pics: 'https://github.com/SakuB/learn-React/blob/master/responsive-page_2/img/test.jpg', /*分享图片的路径(可选)*/
 	            style: '202',
 	            width: 105,
 	            height: 31
@@ -40140,6 +40142,64 @@
 
 /***/ },
 /* 269 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(77), RootInstanceProvider = __webpack_require__(85), ReactMount = __webpack_require__(87), React = __webpack_require__(152); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	"use strict";
+	
+	var React = __webpack_require__(152);
+	var BigContent = React.createClass({
+	    displayName: "BigContent",
+	
+	    render: function render() {
+	        return React.createElement(
+	            "div",
+	            { className: "img-big-content fl" },
+	            React.createElement(
+	                "h4",
+	                { className: "big-tit" },
+	                this.props.imgInfo.tit
+	            ),
+	            React.createElement(
+	                "p",
+	                { className: "big-time" },
+	                this.props.imgInfo.time
+	            ),
+	            React.createElement(
+	                "p",
+	                { className: "big-content" },
+	                this.props.imgInfo.content
+	            ),
+	            React.createElement(
+	                "ul",
+	                { className: "big-shareList" },
+	                React.createElement(
+	                    "li",
+	                    { className: "share-item" },
+	                    React.createElement("a", { version: "1.0", className: "img-share user-btn", href: this.props.href, target: "_blank" })
+	                ),
+	                React.createElement(
+	                    "li",
+	                    { className: "share-item" },
+	                    React.createElement("a", { version: "1.0", className: "img-share user-btn", href: this.props.href, target: "_blank" })
+	                ),
+	                React.createElement(
+	                    "li",
+	                    { className: "share-item" },
+	                    React.createElement("a", { version: "1.0", className: "img-share user-btn", href: this.props.href, target: "_blank" })
+	                )
+	            )
+	        );
+	    }
+	});
+	module.exports = BigContent;
+	
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(259); if (makeExportsHot(module, __webpack_require__(152))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "BigContent.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
+
+/***/ },
+/* 270 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -40148,52 +40208,52 @@
 			"num": "8",
 			"imgInfo": [
 				{
-					"url": "../img/test.jpg",
-					"tit": "123",
-					"time": "25.02.16",
+					"url": "../img/1.jpg",
+					"tit": "鼓楼",
+					"time": "03.07.16",
+					"content": "鼓楼鼓楼鼓楼鼓楼鼓楼鼓楼鼓楼鼓楼鼓楼鼓楼鼓楼鼓楼鼓楼鼓楼鼓楼鼓楼鼓楼鼓楼鼓楼鼓楼鼓楼鼓楼鼓楼鼓楼鼓楼鼓楼鼓楼鼓楼鼓楼"
+				},
+				{
+					"url": "../img/2.jpg",
+					"tit": "秀萌萌",
+					"time": "04.07.16",
+					"content": "秀萌萌坐在草地上秀萌萌坐在草地上秀萌萌坐在草地上秀萌萌坐在草地上秀萌萌坐在草地上秀萌萌坐在草地上秀萌萌坐在草地上秀萌萌坐在草地上"
+				},
+				{
+					"url": "../img/3.jpg",
+					"tit": "钟楼",
+					"time": "03.07.16",
+					"content": "钟楼钟楼钟楼钟楼钟楼钟楼钟楼钟楼钟楼钟楼钟楼"
+				},
+				{
+					"url": "../img/4.jpg",
+					"tit": "晚上的钟楼",
+					"time": "05.07.16",
+					"content": "晚上的钟楼晚上的钟楼晚上的钟楼晚上的钟楼晚上的钟楼晚上的钟楼晚上的钟楼晚上的钟楼晚上的钟楼晚上的钟楼"
+				},
+				{
+					"url": "../img/5.jpg",
+					"tit": "大明宫",
+					"time": "04.07.16",
+					"content": "大明宫词大明宫词大明宫词大明宫词大明宫词大明宫词大明宫词大明宫词大明宫词大明宫词"
+				},
+				{
+					"url": "../img/6.jpg",
+					"tit": "还是大明宫",
+					"time": "05.07.16",
 					"content": "大明宫词"
 				},
 				{
-					"url": "../img/test.jpg",
-					"tit": "123",
-					"time": "25.02.16",
-					"content": "大明宫词"
+					"url": "../img/7.jpg",
+					"tit": "秀萌萌玩泡泡",
+					"time": "02.07.16",
+					"content": "大雁塔大雁塔大雁塔大雁塔大雁塔大雁塔大雁塔大雁塔"
 				},
 				{
-					"url": "../img/test.jpg",
-					"tit": "123",
-					"time": "25.02.16",
-					"content": "大明宫词"
-				},
-				{
-					"url": "../img/test.jpg",
-					"tit": "123",
-					"time": "25.02.16",
-					"content": "大明宫词"
-				},
-				{
-					"url": "../img/test.jpg",
-					"tit": "123",
-					"time": "25.02.16",
-					"content": "大明宫词"
-				},
-				{
-					"url": "../img/test.jpg",
-					"tit": "123",
-					"time": "25.02.16",
-					"content": "大明宫词"
-				},
-				{
-					"url": "../img/test.jpg",
-					"tit": "123",
-					"time": "25.02.16",
-					"content": "大明宫词"
-				},
-				{
-					"url": "../img/test.jpg",
-					"tit": "123",
-					"time": "25.02.16",
-					"content": "大明宫词"
+					"url": "../img/8.jpg",
+					"tit": "回民街",
+					"time": "02.07.16",
+					"content": "回民街的大螃蟹回民街的大螃蟹回民街的大螃蟹回民街的大螃蟹回民街的大螃蟹回民街的大螃蟹回民街的大螃蟹回民街的大螃蟹"
 				}
 			]
 		},

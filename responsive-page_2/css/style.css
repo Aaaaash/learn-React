@@ -138,10 +138,13 @@ a{text-decoration: none;}
     position: absolute;width: 0.3rem;height: 0.3rem;right: 0.3rem;top: 0.3rem;background: url(../img/close-btn.png) center center no-repeat;background-size: cover;cursor: pointer;z-index: 1000
 }
 .imgBig-box{
-    width: 90%;height: 90%;position: relative;margin: 2.5% auto;background: #fafafa;border-radius: 0.05rem;top:-5%;display: none
+    width: 90%;height: 90%;position: relative;margin: 2.5% auto;background: #fafafa;border-radius: 0.05rem;top:-20%;display: none
+}
+.img-ctrl{
+    width: 75%;height: 100%;margin: 0 auto;padding:5% 0 5% 5%;box-sizing: border-box;position: relative
 }
 .img-big{
-    width: 75%;max-width: 10rem;margin: 5% auto;padding-left: 5%
+    width: 100%;
 }
 .img-big-content{
     width:25%;height:100%;margin: 5% 0;padding:0 2%;box-sizing: border-box
@@ -175,4 +178,16 @@ a{text-decoration: none;}
 }
 .img-share:hover{
     background: url(../img/qzone.png);background-size: cover;
+}
+.ctrl{
+    width: 10%;height: 50%;background: #ff004f;position: absolute;cursor: pointer;opacity: 0.2;filter: alpha(opacity=20);transition:opacity .3s;-webkit-transition:opacity .3s;
+}
+.ctrl:hover{
+    opacity: 1;
+}
+.left-ctrl{
+    top:25%;left: 7%;background: url(../img/left-ctrl.png) center center no-repeat;background-size: 0.8rem
+}
+.right-ctrl{
+    top:25%;right: 0;background: url(../img/right-ctrl.png) center center no-repeat;background-size: 0.8rem
 }

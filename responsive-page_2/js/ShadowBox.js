@@ -8,8 +8,12 @@ var ShadowBox=React.createClass({
             <div className="shadow-box" tabIndex="1" >
                 <div className="imgBig-box">
                     <span className="close-button" onClick={this.props.hideShadow}></span>
-                    <img className="img-big fl" src="../img/test_2.jpg"/>
-                    <BigContent href={href}/>
+                    <div className="img-ctrl clearfix fl">
+                        <div className="left-ctrl ctrl"></div>
+                        <div className="right-ctrl ctrl"></div>
+                        <img className="img-big" src={this.props.imgInfo.url}/>
+                    </div>
+                    <BigContent href={href} imgInfo={this.props.imgInfo}/>
                 </div>
             </div>
         )
