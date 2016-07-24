@@ -1,4 +1,5 @@
 var React=require('react');
+var BigContent=require('./BigContent');
 var $=require('jquery');
 var ShadowBox=React.createClass({
     render:function(){
@@ -8,10 +9,7 @@ var ShadowBox=React.createClass({
                 <div className="imgBig-box">
                     <span className="close-button" onClick={this.props.hideShadow}></span>
                     <img className="img-big fl" src="../img/test_2.jpg"/>
-                    <div className="img-big-content fl">
-                        <h4 className="big-tit">大明宫词<span className="img-star user-btn"></span></h4>
-                        <a version="1.0" className="img-share user-btn" href={href} target="_blank"></a>
-                    </div>
+                    <BigContent href={href}/>
                 </div>
             </div>
         )
@@ -24,7 +22,7 @@ var ShadowBox=React.createClass({
         summary:'qzone分享API测试',/*分享摘要(可选)*/
         title:'qzone分享API测试',/*分享标题(可选)*/
         site:'qzone分享API测试',/*分享来源 如：腾讯网(可选)*/
-        pics:'qzone分享API测试', /*分享图片的路径(可选)*/
+        pics:'https://github.com/SakuB/learn-React/blob/master/responsive-page_2/img/test.jpg', /*分享图片的路径(可选)*/
         style:'202',
         width:105,
         height:31

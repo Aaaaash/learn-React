@@ -31,22 +31,22 @@ var RightMain=React.createClass({
                 "display":"block"
             }).stop().animate({
                 opacity:1
-            },300,function(){
+            },200,function(){
                 $(".imgBig-box").css("display","block").stop().animate({
                     opacity:1,
                     top:"0"
-                })
+                },200)
             });
     },
     hideShadowBox:function(){
         $(".imgBig-box").stop().animate({
             opacity:0,
-            top:"-100%"
-        },function(){
+            top:"-5%"
+        },200,function(){
             $(".imgBig-box").css("display","none");
             $(".shadow-box").animate({
                     opacity:0
-                }).css("display","none");
+                },200).css("display","none");
             $("html").css("overflowY","scroll");
         });
 
