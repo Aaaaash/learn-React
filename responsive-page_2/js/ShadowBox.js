@@ -36,7 +36,6 @@ var ShadowBox=React.createClass({
         s.push(i + '=' + encodeURIComponent(p[i]||''));
         }
         var href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?"+s.join('&');
-        console.log(href);
         return href;
     }
 });

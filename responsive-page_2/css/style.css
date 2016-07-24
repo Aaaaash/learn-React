@@ -141,22 +141,22 @@ a{text-decoration: none;}
     width: 90%;height: 90%;position: relative;margin: 2.5% auto;background: #fafafa;border-radius: 0.05rem;top:-20%;display: none
 }
 .img-ctrl{
-    width: 75%;height: 100%;margin: 0 auto;padding:5% 0 5% 5%;box-sizing: border-box;position: relative
+    width: 75%;height: 100%;margin: 0 auto;padding:3.5% 0 3.5% 3.5%;box-sizing: border-box;position: relative
 }
 .img-big{
     width: 100%;
 }
 .img-big-content{
-    width:25%;height:100%;margin: 5% 0;padding:0 2%;box-sizing: border-box
+    width:25%;height:50%;margin: 5% 0;padding:0 3.5%;box-sizing: border-box
 }
 .big-tit{
     font-size: 0.28rem;color: #444;font-weight: normal;line-height: 0.8rem
 }
 .big-time{
-    font-size: 0.18rem;color: #c0c0c0;line-height: 0.35rem
+    font-size: 0.16rem;color: #c0c0c0;line-height: 0.35rem
 }
 .big-content{
-    font-size: 0.18rem;line-height: 0.35rem
+    font-size: 0.16rem;line-height: 0.35rem
 }
 .big-shareList{
     position: relative;bottom: -5%;width: 100%;

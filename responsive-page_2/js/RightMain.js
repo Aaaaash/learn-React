@@ -11,7 +11,6 @@ var RightMain=React.createClass({
         }
     },
     render:function(){
-        // var
         var mainList=this.state.imgData.map(function(item,index){
             return (
                 <MainList imgData={item} key={index} handleShow={this.showShadowBox}/>
