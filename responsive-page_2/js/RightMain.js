@@ -6,12 +6,11 @@ var ImgData=require('./ImgData.json');
 var RightMain=React.createClass({
     getInitialState:function(){
         return {
-            imgData:ImgData,
-            activeData:[]
+            activeData:[],
         }
     },
     render:function(){
-        var mainList=this.state.imgData.map(function(item,index){
+        var mainList=ImgData.map(function(item,index){
             return (
                 <MainList imgData={item} key={index} handleShow={this.showShadowBox}/>
             )
@@ -50,10 +49,11 @@ var RightMain=React.createClass({
             $(".imgBig-box").css("display","none");
             $(".shadow-box").animate({
                     opacity:0
-                },200).css("display","none");
+                },200,function(){
+                    $(this).css("display","none");
+                })
             $("html").css("overflowY","scroll");
         });
-
     }
 });
 module.exports=RightMain;

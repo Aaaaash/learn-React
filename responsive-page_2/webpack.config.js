@@ -26,14 +26,14 @@ module.exports={
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.optimize.UglifyJsPlugin({
-            output: {
-                comments: false,
-            },
-            compress: {
-                warnings: false
-            }
-        }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     output: {
+        //         comments: false,
+        //     },
+        //     compress: {
+        //         warnings: false
+        //     }
+        // }),
         new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js")
     ]
 };

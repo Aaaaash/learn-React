@@ -18,15 +18,15 @@ var MainList=React.createClass({
         )
     },
     handleMouseEnter:function(e){
-        var theImg=e.target;
-        $(theImg).next().stop().animate({
+        var theSpan=e.target;
+        $(theSpan).next().stop().animate({
             height:'0.4rem',
             opacity:1
         },300);
     },
     handleMouseLevae:function(e){
-        var theImg=e.target;
-        $(theImg).next().stop().animate({
+        var theSpan=e.target;
+        $(theSpan).next().stop().animate({
             height:'0',
             opacity:0
         },300);
@@ -35,9 +35,11 @@ var MainList=React.createClass({
 var ImgItem=React.createClass({
     render:function(){
         return (
-            <li className="img-item">
-                <img className="photo" alt={this.props.tit} src={this.props.url} title={this.props.tit} onMouseEnter={this.props.mouseEnter} onMouseLeave={this.props.mouseLeave} onClick={this.props.handleShow.bind(this,this.props)}/>
-                <span className="photo-content">{this.props.content}</span>
+            <li className="img-item" >
+                <div className="photo-box">
+                    <img className="photo" alt={this.props.tit} src={this.props.url} title={this.props.tit}  onMouseOver={this.props.mouseEnter} onMouseOut={this.props.mouseLeave} onClick={this.props.handleShow.bind(this,this.props)}/>
+                    <span className="photo-content">{this.props.content}</span>
+                </div>
                 <p className="time">{this.props.time}</p>
             </li>
         )
