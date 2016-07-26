@@ -2,14 +2,25 @@ var React=require('react');
 var BigContent=require('./BigContent');
 var ImgData=require('./ImgData.json');
 var $=require('jquery');
+var PubSub=require('pubsub-js');
+var showSha='showSha';
 var ShadowBox=React.createClass({
     getInitialState:function(){
         return {
+            activeData:[],
             prevData:[],
             nextData:[]
         }
     },
-    shouldComponentUpdate:function(){
+    componentDidMount:function(){
+        PubSub.subscribe(showSha,function(evName,data){
+            console.log(data);
+            this.setState({
+                activeData:data
+            });
+        }.bind(this));
+    },
+    getPrevNext:function(){
         var activeData=this.props.imgInfo;
         var prevIndex,nextIndex;
         var theprevData,thenextData;
@@ -42,6 +53,7 @@ var ShadowBox=React.createClass({
         return true
     },
     render:function(){
+        console.log(this.state)
         var href=this.shareQzone();
         return (
             <div className="shadow-box" tabIndex="1" >
@@ -50,9 +62,9 @@ var ShadowBox=React.createClass({
                     <div className="img-ctrl clearfix fl">
                         <div className="left-ctrl ctrl"  onClick={this.handleLeftRemove}></div>
                         <div className="right-ctrl ctrl"  onClick={this.handleRightRemove}></div>
-                        <img className="img-big" src={this.props.imgInfo.url}/>
+                        <img className="img-big" src={this.state.activeData.url}/>
                     </div>
-                    <BigContent href={href} imgInfo={this.props.imgInfo}/>
+                    <BigContent href={href} imgInfo={this.state.activeData}/>
                 </div>
             </div>
         )
@@ -78,6 +90,7 @@ var ShadowBox=React.createClass({
         return href;
     },
     handleLeftRemove:function(){
+        this.getPrevNext();
         $(this.refs.imgBox).stop().animate({
             left:"-5%",
             opacity:0
@@ -90,4 +103,7 @@ var ShadowBox=React.createClass({
         },200)
     }
 });
-module.exports=ShadowBox;
+module.exports={
+    ShadowBox:ShadowBox,
+    showSha:showSha
+};

@@ -20,6 +20,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "jquery": "^3.1.0",
     "json-loader": "^0.5.4",
+    "pubsub-js": "^1.5.3",
     "react": "^15.2.1",
     "react-addons": "^0.9.1-deprecated",
     "react-dom": "^15.2.1",
