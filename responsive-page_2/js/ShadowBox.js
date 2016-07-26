@@ -4,6 +4,8 @@ var ImgData=require('./ImgData.json');
 var $=require('jquery');
 var PubSub=require('pubsub-js');
 var showSha='showSha';
+var getNext='getNext';
+var getPrev='getPrev';
 var ShadowBox=React.createClass({
     getInitialState:function(){
         return {
@@ -14,54 +16,68 @@ var ShadowBox=React.createClass({
     },
     componentDidMount:function(){
         PubSub.subscribe(showSha,function(evName,data){
-            console.log(data);
             this.setState({
                 activeData:data
             });
         }.bind(this));
-    },
-    getPrevNext:function(){
-        var activeData=this.props.imgInfo;
-        var prevIndex,nextIndex;
-        var theprevData,thenextData;
-        ImgData.map(function(item,index){
-            item.imgInfo.map(function(obj,num){
-                if(obj.url==activeData.url){
-                    prevIndex=num-1;
-                    nextIndex=num+1
-                }
-            });
-        });
-        ImgData.map(function(item,index){
-            if(item.num==8){
+        PubSub.subscribe(getNext,function(evName,active){
+            var activeData=active;
+            var nextIndex;
+            var thenextData;
+            ImgData.map(function(item,index){
                 item.imgInfo.map(function(obj,num){
-                    if(num==prevIndex){
-                        theprevData=obj;
-                    }
-                    if(num==nextIndex){
-                        thenextData=obj;
+                    if(obj.url==activeData.url){
+                        nextIndex=num+1
                     }
                 });
-            }
-        });
-        this.setState({
-            prevData:theprevData,
-            nextData:thenextData
-        },function(){
-            console.log(this.state);
-        });
-        return true
+            });
+            ImgData.map(function(item,index){
+                if(item.num==8){
+                    item.imgInfo.map(function(obj,num){
+                        if(num==nextIndex){
+                            thenextData=obj;
+                        }
+                    });
+                }
+            });
+            this.setState({
+                nextData:thenextData
+            });
+        }.bind(this));
+        PubSub.subscribe(getPrev,function(evName,active){
+            var activeData=active;
+            var prevIndex;
+            var theprevData;
+            ImgData.map(function(item,index){
+                item.imgInfo.map(function(obj,num){
+                    if(obj.url==activeData.url){
+                        prevIndex=num-1;
+                    }
+                });
+            });
+            ImgData.map(function(item,index){
+                if(item.num==8){
+                    item.imgInfo.map(function(obj,num){
+                        if(num==prevIndex){
+                            theprevData=obj;
+                        }
+                    });
+                }
+            });
+            this.setState({
+                prevData:theprevData,
+            });
+        }.bind(this));
     },
     render:function(){
-        console.log(this.state)
         var href=this.shareQzone();
         return (
             <div className="shadow-box" tabIndex="1" >
                 <div className="imgBig-box"  ref="imgBox" >
                     <span className="close-button" onClick={this.props.hideShadow}></span>
                     <div className="img-ctrl clearfix fl">
-                        <div className="left-ctrl ctrl"  onClick={this.handleLeftRemove}></div>
-                        <div className="right-ctrl ctrl"  onClick={this.handleRightRemove}></div>
+                        <div className="left-ctrl ctrl"  onClick={this.handleRightRemove.bind(this,this.state.activeData)}></div>
+                        <div className="right-ctrl ctrl"  onClick={this.handleLeftRemove.bind(this,this.state.activeData)}></div>
                         <img className="img-big" src={this.state.activeData.url}/>
                     </div>
                     <BigContent href={href} imgInfo={this.state.activeData}/>
@@ -89,18 +105,37 @@ var ShadowBox=React.createClass({
         var href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?"+s.join('&');
         return href;
     },
-    handleLeftRemove:function(){
-        this.getPrevNext();
-        $(this.refs.imgBox).stop().animate({
+    handleLeftRemove:function(active){
+        PubSub.publish(getNext,active);
+        var imgBox=this.refs.imgBox;
+        $(imgBox).stop().animate({
             left:"-5%",
             opacity:0
-        },200);
+        },200,function(){
+            $(imgBox).css('left',"5%").stop().animate({
+                left:"0",
+                opacity:1
+            })
+            this.setState({
+                activeData:this.state.nextData
+            })
+        }.bind(this));
     },
-    handleRightRemove:function(){
-        $(this.refs.imgBox).stop().animate({
+    handleRightRemove:function(active){
+        PubSub.publish(getPrev,active);
+        var imgBox=this.refs.imgBox;
+        $(imgBox).stop().animate({
             left:"5%",
             opacity:0
-        },200)
+        },200,function(){
+            $(imgBox).css('left',"-5%").stop().animate({
+                left:"0",
+                opacity:1
+            })
+            this.setState({
+                activeData:this.state.prevData
+            })
+        }.bind(this))
     }
 });
 module.exports={
