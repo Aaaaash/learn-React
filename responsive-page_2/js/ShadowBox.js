@@ -112,13 +112,19 @@ var ShadowBox=React.createClass({
             left:"-5%",
             opacity:0
         },200,function(){
+            this.setState({
+                activeData:this.state.nextData
+            },function(){
+                if(this.state.activeData.url.indexOf('8')!=-1){
+                    $('.right-ctrl').css("display","none");
+                }
+            });
             $(imgBox).css('left',"5%").stop().animate({
                 left:"0",
                 opacity:1
-            })
-            this.setState({
-                activeData:this.state.nextData
-            })
+            });
+            $('.left-ctrl').css("display","block");
+
         }.bind(this));
     },
     handleRightRemove:function(active){
@@ -128,13 +134,19 @@ var ShadowBox=React.createClass({
             left:"5%",
             opacity:0
         },200,function(){
+            this.setState({
+                activeData:this.state.prevData
+            },function(){
+                if(this.state.activeData.url.indexOf('1')!=-1){
+                    $('.left-ctrl').css("display","none");
+                }
+            });
             $(imgBox).css('left',"-5%").stop().animate({
                 left:"0",
                 opacity:1
-            })
-            this.setState({
-                activeData:this.state.prevData
-            })
+            });
+            $('.right-ctrl').css("display","block");
+
         }.bind(this))
     }
 });
